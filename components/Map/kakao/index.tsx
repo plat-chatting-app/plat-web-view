@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { getProcessEnv } from "@plat/utils";
-import { Map as MapApi } from "./api";
-import useCreateMap from "./useCreateMap";
+import { Map as MapApi } from "@plat/Map/kakao-map-api";
+import CreateMap from "@plat/Map/kakao/CreateMap";
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -28,9 +28,11 @@ const Map = (props: Props) => {
     // eslint-disable-next-line
   }, [container]);
 
-  useCreateMap(scriptRef, mapApiRef);
-
-  return <div {...props} id="container" ref={container} />;
+  return (
+    <CreateMap scriptRef={scriptRef} mapApiRef={mapApiRef}>
+      <div {...props} id="container" ref={container} />
+    </CreateMap>
+  );
 };
 
 export default Map;

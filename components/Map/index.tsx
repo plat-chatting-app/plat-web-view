@@ -1,5 +1,5 @@
 "use client";
-import KakaoMap from "./kakao";
+import KakaoMap from "@plat/Map/kakao";
 
 interface Props
   extends React.DetailedHTMLProps<
