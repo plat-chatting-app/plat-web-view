@@ -34,6 +34,15 @@ export type MapTypeId = {
   MAP_TYPE_ID: MapBaseType | OverlayType | 'ROADVIEW';
 }
 
+export type LatLngBounds = unknown;
+export type MapTypeControl = unknown;
+export type ZoomControl = unknown;
+export type ControlPosition = unknown;
+export type CopyrightPosition = unknown;
+
+export type MapProjection = unknown;
+export type ProjectionId = unknown;
+
 export interface Map {
   setCenter: (latlng: LatLng) => void;
   getCenter: () => LatLng;
@@ -44,11 +53,26 @@ export interface Map {
   getLevel: () => number;
   setMapTypeId: (mapTypeId: MapTypeId) => void;
   getMapTypeId: () => MapTypeId;
-}
-
-export interface kakao {
-  maps: {
-    Map: Map;
-    LatLng: LatLng;
-  }
+  setBounds: (bounds: LatLngBounds) => void;
+  getBounds: () => LatLngBounds;
+  setMinLevel: (minLevel: number) => void;
+  setMaxLevel: (maxLevel: number) => void;
+  panBy: (dx: number, dy: number) => void;
+  panTo: (latlng_or_bounds: LatLng | LatLngBounds, padding: number) => void;
+  addControl: (control: MapTypeControl | ZoomControl, position: ControlPosition) => void;
+  removeControl: (control: MapTypeControl | ZoomControl) => void;
+  setDraggable: (draggable: boolean) => void;
+  getDraggable: () => boolean;
+  setZoomable: (zoomable: boolean) => void;
+  getZoomable: () => boolean;
+  setProjectionId: (projectionId: ProjectionId) => void;
+  getProjectionId: () => ProjectionId;
+  relayout: () => void;
+  addOverlayMapTypeId: (mapTypeId: MapTypeId) => void;
+  removeOverlayMapTypeId: (mapTypeId: MapTypeId) => void;
+  setKeyboardShortcuts: (active: boolean) => void;
+  getKeyboardShortcuts: () => boolean;
+  setCopyrightPosition: (copyrightPosition: CopyrightPosition, reversed?: boolean) => void;
+  getProjection: () => MapProjection;
+  setCursor: (style: string) => void;
 }

@@ -1,44 +1,36 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 import { getProcessEnv } from "@plat/utils";
-import { LatLng, Map as MapInstance, Options } from "./api";
+import { Map as MapApi } from "./api";
+import useCreateMap from "./useCreateMap";
 
-declare global {
-  interface Window {
-    kakao: any;
-  }
-}
+interface Props
+  extends React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  > {}
 
-const Map = () => {
+const Map = (props: Props) => {
   const processEnv = getProcessEnv();
   const container = useRef(null);
 
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
+  const mapApiRef = useRef<MapApi | null>(null);
+
   useEffect(() => {
-    const isCreated = !!document.getElementById("kakao-map-api");
-    if (isCreated) return;
+    if (!!scriptRef.current) return;
 
-    const script = document.createElement("script");
-    script.id = "kakao-map-api";
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${processEnv.KAKAO_JAVASCRIPT_APP_KEY}&autoload=false`;
-    document.head.appendChild(script);
+    scriptRef.current = document.createElement("script");
+    scriptRef.current.id = "kakao-map-api";
+    scriptRef.current.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${processEnv.KAKAO_JAVASCRIPT_APP_KEY}&autoload=false`;
 
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        const mapContainer = document.getElementById("container");
-
-        const center: LatLng = new window.kakao.maps.LatLng(37.450701, 126.570667);
-        const mapOption: Options = {
-          center,
-          level: 3,
-        };
-
-        const map: MapInstance = new window.kakao.maps.Map(mapContainer, mapOption);
-      });
-    };
+    document.head.appendChild(scriptRef.current);
+    // eslint-disable-next-line
   }, [container]);
 
-  return <div id="container" ref={container} className="w-screen h-screen" />;
+  useCreateMap(scriptRef, mapApiRef);
+
+  return <div {...props} id="container" ref={container} />;
 };
 
 export default Map;
