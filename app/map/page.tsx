@@ -1,4 +1,4 @@
-import Map from "@/components/Map";
+import Map from "@plat/Map";
 
 const Page = () => {
   return <Map apiType="kakao" />;
