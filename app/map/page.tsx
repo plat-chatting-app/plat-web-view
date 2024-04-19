@@ -1,5 +1,7 @@
+import Map from "@/components/Map";
+
 const Page = () => {
-  return <></>;
+  return <Map apiType="kakao" />;
 };
 
 export default Page;
