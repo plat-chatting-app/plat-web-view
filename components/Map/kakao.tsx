@@ -1,13 +1,12 @@
 'use client';
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { getProcessEnv } from "@/components/server/Environment";
 
 declare global {
   interface Window {
     kakao: any;
   }
-
-  interface Document {}
 }
 
 interface LatLng {
@@ -40,22 +39,34 @@ interface Options {
 }
 
 const Map = () => {
+  const processEnv = getProcessEnv();
   const container = useRef(null);
 
+  useEffect(() => {
+    const isCreated = !!document.getElementById('kakao-map-api');
+    if (isCreated) return;
+
+    const script = document.createElement('script');
+    script.id = 'kakao-map-api';
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${processEnv.KAKAO_JAVASCRIPT_APP_KEY}&autoload=false`;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        const mapContainer = document.getElementById('container');
+        const mapOption = {
+          center: new window.kakao.maps.LatLng(37.450701, 126.570667),
+          level: 3
+        };
+
+        const map = new window.kakao.maps.Map(mapContainer, mapOption);
+      })
+    }
+  }, [container]);
+
   return (
-    <div ref={container} className="w-full h-full" />
+    <div id="container" ref={container} className="w-screen h-screen" />
   )
 }
 
 export default Map;
-
-const MAP_ID = 'map';
-const DEFAULT_LAT_LNG = [33.450701, 126.570667];
-
-const container = document.getElementById(MAP_ID);
-const options: Options = {
-  center: new window.kakao.maps.LatLng(DEFAULT_LAT_LNG[0], DEFAULT_LAT_LNG[1]),
-  level: 3,
-}
-
-export const mapApi = new window.kakao.maps.Map(container, options);
