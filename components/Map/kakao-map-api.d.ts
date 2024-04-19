@@ -5,13 +5,13 @@ abstract class ALatLng {
   getLng: () => number;
   equals: (latlng: LatLng) => boolean;
   toString: () => string;
-  toCoords: () => TCoords;
+  toCoords: () => Coords;
 }
 
 abstract class ACoords {
   getX: () => number;
   getY: () => number;
-  equals: (coords: TCoords) => boolean;
+  equals: (coords: Coords) => boolean;
   toString: () => string;
   toLatLng: () => LatLng;
 }
@@ -31,7 +31,7 @@ abstract class AMap {
   setMinLevel: (minLevel: number) => void;
   setMaxLevel: (maxLevel: number) => void;
   panBy: (dx: number, dy: number) => void;
-  panTo: (latlng_or_bounds: TLatLng | LatLngBounds, padding: number) => void;
+  panTo: (latlng_or_bounds: LatLng | LatLngBounds, padding: number) => void;
   addControl: (control: MapTypeControl | ZoomControl, position: ControlPosition) => void;
   removeControl: (control: MapTypeControl | ZoomControl) => void;
   setDraggable: (draggable: boolean) => void;
