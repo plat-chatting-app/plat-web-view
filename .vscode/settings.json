@@ -836,10 +836,6 @@
 	// Emulate selection behavior of tab characters when using spaces for indentation. Selection will stick to tab stops.
 	"editor.stickyTabStops": false,
 
-	// This setting is deprecated, please use separate settings like 'editor.suggest.showKeywords' or 'editor.suggest.showSnippets' instead.
-	// 
-	"editor.suggest.filteredTypes": {},
-
 	// Controls whether filtering and sorting suggestions accounts for small typos.
 	"editor.suggest.filterGraceful": true,
 
@@ -2181,10 +2177,6 @@
 
 	// Controls whether the search view should read or modify the shared find clipboard on macOS.
 	"search.globalFindClipboard": false,
-
-	// This setting is deprecated. You can drag the search icon to a new location instead.
-	// Controls whether the search will be shown as a view in the sidebar or as a panel in the panel area for more horizontal space.
-	"search.location": "sidebar",
 
 	// The search cache is kept in the extension host which never shuts down, so this setting is no longer needed.
 	// When enabled, the searchService process will be kept alive instead of being shut down after an hour of inactivity. This will keep the file search cache in memory.
