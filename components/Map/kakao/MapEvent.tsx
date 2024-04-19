@@ -1,6 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { AMap as MapApi } from "@plat/Map/kakao-map-api";
+import { Map as MapApi } from "@plat/Map/kakao-map-api";
 
 interface Props {
   mapApiRef: React.MutableRefObject<MapApi | null>;

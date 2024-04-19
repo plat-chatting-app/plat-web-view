@@ -8,6 +8,14 @@ abstract class ALatLng {
   toCoords: () => Coords;
 }
 
+export class LatLng extends ALatLng {
+  constructor(private latitude: number, private longitude: number) {
+    super();
+  }
+}
+
+type TLatLng = typeof LatLng;
+
 abstract class ACoords {
   getX: () => number;
   getY: () => number;
@@ -15,6 +23,14 @@ abstract class ACoords {
   toString: () => string;
   toLatLng: () => LatLng;
 }
+
+export class Coords extends ACoords {
+  constructor(private x: number, private y: number) {
+    super();
+  }
+}
+
+type TCoords = typeof Coords;
 
 abstract class AMap {
   setCenter: (latlng: LatLng) => void;
@@ -50,7 +66,13 @@ abstract class AMap {
   setCursor: (style: string) => void;
 }
 
-// ---------------------------------------------------------------------------------------
+export class Map extends AMap {
+  constructor(private container: any, private options: Options) {
+    super();
+  }
+}
+
+type TMap = typeof Map;
 
 export interface Options {
   center: LatLng;
@@ -80,36 +102,6 @@ export type CopyrightPosition = unknown;
 
 export type MapProjection = unknown;
 export type ProjectionId = unknown;
-
-// ---------------------------------------------------------------------------------------
-
-// setup constructor
-
-class LatLng extends ALatLng {
-  constructor(private latitude: number, private longitude: number) {
-    super();
-  }
-}
-
-type TLatLng = typeof LatLng;
-
-class Map extends AMap {
-  constructor(private container: any, private options: Options) {
-    super();
-  }
-}
-
-type TMap = typeof Map;
-
-class Coords extends ACoords {
-  constructor(private x: number, private y: number) {
-    super();
-  }
-}
-
-type TCoords = typeof Coords;
-
-// ---------------------------------------------------------------------------------------
 
 export type kakao = {
   maps: {
