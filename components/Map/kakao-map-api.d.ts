@@ -125,10 +125,15 @@ export type MapEventAction =
   | "bounds_changed"
   | "click"
   | "dblclick"
-  | "idle"
+  | "rightclick"
+  | "mousemove"
+  | "dragstart"
   | "drag"
   | "dragstart"
-  | "dragend";
+  | "dragend"
+  | "idle"
+  | "tilesloaded"
+  | "maptypeid_changed";
 
 export type kakao = {
   maps: {
