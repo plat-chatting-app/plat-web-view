@@ -35,10 +35,13 @@ type TCoords = typeof Coords;
 abstract class AMap {
   setCenter: (latlng: LatLng) => void;
   getCenter: () => LatLng;
-  setLevel: (level: number, options?: {
-    animate?: boolean | { duration: number };
-    anchor?: LatLng;
-  }) => void;
+  setLevel: (
+    level: number,
+    options?: {
+      animate?: boolean | { duration: number };
+      anchor?: LatLng;
+    }
+  ) => void;
   getLevel: () => number;
   setMapTypeId: (mapTypeId: MapTypeId) => void;
   getMapTypeId: () => MapTypeId;
@@ -48,7 +51,10 @@ abstract class AMap {
   setMaxLevel: (maxLevel: number) => void;
   panBy: (dx: number, dy: number) => void;
   panTo: (latlng_or_bounds: LatLng | LatLngBounds, padding: number) => void;
-  addControl: (control: MapTypeControl | ZoomControl, position: ControlPosition) => void;
+  addControl: (
+    control: MapTypeControl | ZoomControl,
+    position: ControlPosition
+  ) => void;
   removeControl: (control: MapTypeControl | ZoomControl) => void;
   setDraggable: (draggable: boolean) => void;
   getDraggable: () => boolean;
@@ -61,7 +67,10 @@ abstract class AMap {
   removeOverlayMapTypeId: (mapTypeId: MapTypeId) => void;
   setKeyboardShortcuts: (active: boolean) => void;
   getKeyboardShortcuts: () => boolean;
-  setCopyrightPosition: (copyrightPosition: CopyrightPosition, reversed?: boolean) => void;
+  setCopyrightPosition: (
+    copyrightPosition: CopyrightPosition,
+    reversed?: boolean
+  ) => void;
   getProjection: () => MapProjection;
   setCursor: (style: string) => void;
 }
@@ -87,12 +96,18 @@ export interface Options {
   keyboardShortcuts?: boolean | { speed: number };
 }
 
-export type MapBaseType = 'ROADMAP' | 'SKYVIEW' | 'HYBRID';
-export type OverlayType = 'OVERLAY' | 'TERRAIN' | 'TRAFFIC' | 'BICYCLE' | 'BICYCLE_HYBRID' | 'USE_DISTRICT';
+export type MapBaseType = "ROADMAP" | "SKYVIEW" | "HYBRID";
+export type OverlayType =
+  | "OVERLAY"
+  | "TERRAIN"
+  | "TRAFFIC"
+  | "BICYCLE"
+  | "BICYCLE_HYBRID"
+  | "USE_DISTRICT";
 
 export type MapTypeId = {
-  MAP_TYPE_ID: MapBaseType | OverlayType | 'ROADVIEW';
-}
+  MAP_TYPE_ID: MapBaseType | OverlayType | "ROADVIEW";
+};
 
 export type LatLngBounds = unknown;
 export type MapTypeControl = unknown;
@@ -103,11 +118,34 @@ export type CopyrightPosition = unknown;
 export type MapProjection = unknown;
 export type ProjectionId = unknown;
 
+export type MapEventAction =
+  | "center_changed"
+  | "zoom_start"
+  | "zoom_changed"
+  | "bounds_changed"
+  | "click"
+  | "dblclick"
+  | "idle"
+  | "drag"
+  | "dragstart"
+  | "dragend";
+
 export type kakao = {
   maps: {
     LatLng: TLatLng;
     Map: TMap;
     load: (callback?: () => void) => void;
-    event: any;
-  }
-}
+    event: {
+      addListener: (
+        target: Map,
+        type: MapEventAction,
+        handler: () => void
+      ) => void;
+      removeListener: (
+        target: Map,
+        type: MapEventAction,
+        handler: () => void
+      ) => void;
+    };
+  };
+};

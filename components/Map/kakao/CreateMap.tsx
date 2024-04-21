@@ -10,36 +10,35 @@ const {
 
 interface Props extends React.PropsWithChildren {
   scriptRef: React.MutableRefObject<HTMLScriptElement | null>;
-  mapApiRef: React.MutableRefObject<MapApi | null>;
+  containerRef: React.MutableRefObject<HTMLDivElement | null>;
+  mapApiState: [MapApi | null, (value: MapApi | null) => void];
 }
 
-const CreateMap = ({
-  scriptRef,
-  mapApiRef,
-  children
-}: Props) => {
+const CreateMap = ({ scriptRef, containerRef, mapApiState, children }: Props) => {
+  const [mapApi, setMapApi] = mapApiState;
   useEffect(() => {
-    if (!scriptRef.current || mapApiRef.current) return;
+    if (scriptRef.current === null || mapApi) return;
 
     scriptRef.current.onload = () => {
       window.kakao.maps.load(() => {
-        const mapContainer = document.getElementById("container");
-
-        const center = new window.kakao.maps.LatLng(
-          DEFAULT_LAT,
-          DEFAULT_LNG
-        );
+        const center = new window.kakao.maps.LatLng(DEFAULT_LAT, DEFAULT_LNG);
         const mapOption: Options = {
           center,
           level: DEFAULT_LEVEL,
         };
 
-        mapApiRef.current = new window.kakao.maps.Map(mapContainer, mapOption);
+        setMapApi(new window.kakao.maps.Map(containerRef.current, mapOption));
       });
     };
-  }, [scriptRef, mapApiRef]);
+    // eslint-disable-next-line
+  }, [mapApi]);
 
-  return <>{children}</>
+  return (
+    <>
+      <script ref={scriptRef} />
+      {mapApi && children}
+    </>
+  );
 };
 
 export default CreateMap;
