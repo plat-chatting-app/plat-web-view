@@ -12,7 +12,7 @@ interface Props
   apiKey: string;
 }
 
-const Map = ({apiKey, ...restProps}: Props) => {
+const Map = ({ apiKey, ...restProps }: Props) => {
   const containerRef = useRef(null);
 
   const scriptRef = useRef<HTMLScriptElement | null>(null);

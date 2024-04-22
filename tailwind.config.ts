@@ -1,4 +1,9 @@
 import type { Config } from "tailwindcss";
+import { breakpoints } from "./components/styles/breakpoints";
+
+const screens = Object.fromEntries(
+  Object.entries(breakpoints).map(([key, value]) => [key, `${value}px`])
+);
 
 const config: Config = {
   content: [
@@ -14,6 +19,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    screens,
   },
   plugins: [],
 };

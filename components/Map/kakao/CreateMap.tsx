@@ -14,7 +14,12 @@ interface Props extends React.PropsWithChildren {
   mapApiState: [MapApi | null, (value: MapApi | null) => void];
 }
 
-const CreateMap = ({ scriptRef, containerRef, mapApiState, children }: Props) => {
+const CreateMap = ({
+  scriptRef,
+  containerRef,
+  mapApiState,
+  children,
+}: Props) => {
   const [mapApi, setMapApi] = mapApiState;
   useEffect(() => {
     if (scriptRef.current === null || mapApi) return;

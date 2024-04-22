@@ -9,7 +9,10 @@ abstract class ALatLng {
 }
 
 export class LatLng extends ALatLng {
-  constructor(private latitude: number, private longitude: number) {
+  constructor(
+    private latitude: number,
+    private longitude: number,
+  ) {
     super();
   }
 }
@@ -25,7 +28,10 @@ abstract class ACoords {
 }
 
 export class Coords extends ACoords {
-  constructor(private x: number, private y: number) {
+  constructor(
+    private x: number,
+    private y: number,
+  ) {
     super();
   }
 }
@@ -40,7 +46,7 @@ abstract class AMap {
     options?: {
       animate?: boolean | { duration: number };
       anchor?: LatLng;
-    }
+    },
   ) => void;
   getLevel: () => number;
   setMapTypeId: (mapTypeId: MapTypeId) => void;
@@ -53,7 +59,7 @@ abstract class AMap {
   panTo: (latlng_or_bounds: LatLng | LatLngBounds, padding: number) => void;
   addControl: (
     control: MapTypeControl | ZoomControl,
-    position: ControlPosition
+    position: ControlPosition,
   ) => void;
   removeControl: (control: MapTypeControl | ZoomControl) => void;
   setDraggable: (draggable: boolean) => void;
@@ -69,14 +75,17 @@ abstract class AMap {
   getKeyboardShortcuts: () => boolean;
   setCopyrightPosition: (
     copyrightPosition: CopyrightPosition,
-    reversed?: boolean
+    reversed?: boolean,
   ) => void;
   getProjection: () => MapProjection;
   setCursor: (style: string) => void;
 }
 
 export class Map extends AMap {
-  constructor(private container: any, private options: Options) {
+  constructor(
+    private container: any,
+    private options: Options,
+  ) {
     super();
   }
 }
@@ -144,12 +153,12 @@ export type kakao = {
       addListener: (
         target: Map,
         type: MapEventAction,
-        handler: () => void
+        handler: () => void,
       ) => void;
       removeListener: (
         target: Map,
         type: MapEventAction,
-        handler: () => void
+        handler: () => void,
       ) => void;
     };
   };

@@ -15,17 +15,13 @@ const IdleEvent = ({ mapApi, events }: Props) => {
       Promise.all(promises);
     };
 
-    window.kakao.maps.event.addListener(
-      mapApi,
-      "idle",
-      getHandler(mapApi)
-    );
+    window.kakao.maps.event.addListener(mapApi, "idle", getHandler(mapApi));
 
     return () => {
       window.kakao.maps.event.removeListener(
         mapApi,
         "idle",
-        getHandler(mapApi)
+        getHandler(mapApi),
       );
     };
   }, [mapApi, events]);

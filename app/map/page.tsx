@@ -8,7 +8,7 @@ const Page = () => {
     <Map
       apiType="kakao"
       apiKey={processEnv.KAKAO_JAVASCRIPT_APP_KEY as string}
-      className="w-screen h-screen"
+      className="w-full h-screen"
     />
   );
 };
