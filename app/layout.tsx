@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import '@plat/styles/scss/globals.scss'
-import '@plat/styles/scss/container.scss'
+import './globals.scss'
 import Environment from '@plat/server/Environment'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -29,7 +28,7 @@ export default function RootLayout({
     <html lang="ko">
       <Environment>
         <body className={inter.className}>
-          <div className="root-container">{children}</div>
+          <div className="max-w-screen-sm mx-auto">{children}</div>
         </body>
       </Environment>
     </html>

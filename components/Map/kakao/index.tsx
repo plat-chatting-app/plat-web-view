@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { Map as MapApi } from '@plat/Map/kakao-map-api'
+import { Position } from '@plat/Map/types'
 import CreateMap from '@plat/Map/kakao/CreateMap'
 import IdleEvent from '@plat/Map/kakao/IdleEvent'
 
@@ -9,10 +10,11 @@ interface Props
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  config: Position
   apiKey: string
 }
 
-const Map = ({ apiKey, ...restProps }: Props) => {
+const Map = ({ apiKey, config, ...restProps }: Props) => {
   const containerRef = useRef(null)
 
   const scriptRef = useRef<HTMLScriptElement | null>(null)
@@ -34,6 +36,7 @@ const Map = ({ apiKey, ...restProps }: Props) => {
         scriptRef={scriptRef}
         containerRef={containerRef}
         mapApiState={[mapApi, setMapApi]}
+        config={config}
       >
         <IdleEvent
           mapApi={mapApi!}

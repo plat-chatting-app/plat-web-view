@@ -7,12 +7,16 @@ interface Props
     HTMLDivElement
   > {
   apiType: 'kakao' | 'naver' | 'google'
+  config: {
+    latLng: [number, number]
+    zoom: number
+  }
   apiKey: string
 }
 
-const Map = ({ apiType, apiKey, ...restProps }: Props) => {
+const Map = ({ apiType, apiKey, config, ...restProps }: Props) => {
   if (apiType === 'kakao') {
-    return <KakaoMap apiKey={apiKey} {...restProps} />
+    return <KakaoMap apiKey={apiKey} config={config} {...restProps} />
   }
   return null
 }

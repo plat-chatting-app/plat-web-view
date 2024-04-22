@@ -1,15 +1,8 @@
-import Map from '@plat/Map'
-import { getProcessEnv } from '@plat/utils'
+import { MapUseCase } from '@plat/usecase'
 
 const Page = () => {
-  const processEnv = getProcessEnv()
-
   return (
-    <Map
-      apiType="kakao"
-      apiKey={processEnv.KAKAO_JAVASCRIPT_APP_KEY as string}
-      className="w-full h-screen"
-    />
+    <MapUseCase />
   )
 }
 
