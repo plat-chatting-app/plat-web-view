@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "@plat/styles/scss/globals.scss";
+import "@plat/styles/scss/container.scss";
 import Environment from "@plat/server/Environment";
-import Container from "@plat/Container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,9 +29,9 @@ export default function RootLayout({
     <html lang="ko">
       <Environment>
         <body className={inter.className}>
-          <Container size="sm">
+          <div className="root-container">
             {children}
-          </Container>
+          </div>
         </body>
       </Environment>
     </html>
