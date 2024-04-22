@@ -1,1 +1,1 @@
-export { getProcessEnv } from "@plat/server/Environment";
+export { getProcessEnv } from '@plat/server/Environment'

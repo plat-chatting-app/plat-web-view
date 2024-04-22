@@ -1,8 +1,8 @@
-import Map from "@plat/Map";
-import { getProcessEnv } from "@plat/utils";
+import Map from '@plat/Map'
+import { getProcessEnv } from '@plat/utils'
 
 const Page = () => {
-  const processEnv = getProcessEnv();
+  const processEnv = getProcessEnv()
 
   return (
     <Map
@@ -10,7 +10,7 @@ const Page = () => {
       apiKey={processEnv.KAKAO_JAVASCRIPT_APP_KEY as string}
       className="w-full h-screen"
     />
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

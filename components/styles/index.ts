@@ -1,1 +1,1 @@
-export * from "@plat/styles/breakpoints";
+export * from '@plat/styles/breakpoints'

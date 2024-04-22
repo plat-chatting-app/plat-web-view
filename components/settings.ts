@@ -1,9 +1,9 @@
-import { mapConfig } from "@plat/Map/config";
+import { mapConfig } from '@plat/Map/config'
 
-const MAP_CONFIG = mapConfig;
+const MAP_CONFIG = mapConfig
 
 const settings = {
   MAP_CONFIG,
-};
+}
 
-export default settings;
+export default settings

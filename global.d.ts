@@ -1,9 +1,9 @@
-import { kakao } from "@plat/Map/kakao-map-api";
+import { kakao } from '@plat/Map/kakao-map-api'
 
-export {};
+export {}
 
 declare global {
   interface Window {
-    kakao: kakao;
+    kakao: kakao
   }
 }

@@ -1,26 +1,26 @@
-import type { Config } from "tailwindcss";
-import { breakpoints } from "./components/styles/breakpoints";
+import type { Config } from 'tailwindcss'
+import { breakpoints } from './components/styles/breakpoints'
 
 const screens = Object.fromEntries(
-  Object.entries(breakpoints).map(([key, value]) => [key, `${value}px`])
-);
+  Object.entries(breakpoints).map(([key, value]) => [key, `${value}px`]),
+)
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
     screens,
   },
   plugins: [],
-};
-export default config;
+}
+export default config
