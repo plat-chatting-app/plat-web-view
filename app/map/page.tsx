@@ -1,9 +1,7 @@
 import { MapUseCase } from '@plat/usecase'
 
 const Page = () => {
-  return (
-    <MapUseCase />
-  )
+  return <MapUseCase />
 }
 
 export default Page

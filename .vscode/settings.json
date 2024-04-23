@@ -2304,7 +2304,7 @@
 	//  - manual: Disable automatic background update checks. Updates will be available if you manually check for updates.
 	//  - start: Check for updates only on startup. Disable automatic background update checks.
 	//  - default: Enable automatic update checks. Code will check for updates automatically and periodically.
-	"update.mode": "default",
+	"update.mode": "none",
 
 	// Show Release Notes after an update. The Release Notes are fetched from a Microsoft online service.
 	"update.showReleaseNotes": true,

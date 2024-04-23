@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 export type GeolocationOptions = {
-  enableHighAccuracy?: boolean,
-  maximumAge?: number,
-  timeout?: number,
+  enableHighAccuracy?: boolean
+  maximumAge?: number
+  timeout?: number
 }
 
 export type GeolocationCoordinates = Readonly<{
@@ -35,14 +35,20 @@ export type GeolocationPositionError = Readonly<{
   message: string
 }>
 
-export const useGeolocation = (options?: GeolocationOptions): {
+export const useGeolocation = (
+  options?: GeolocationOptions,
+): {
   isLoading: boolean
   position?: GeolocationPosition
   error?: GeolocationPositionError
 } => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<GeolocationPositionError | undefined>(undefined)
-  const [position, setPosition] = useState<GeolocationPosition | undefined>(undefined)
+  const [error, setError] = useState<GeolocationPositionError | undefined>(
+    undefined,
+  )
+  const [position, setPosition] = useState<GeolocationPosition | undefined>(
+    undefined,
+  )
 
   const handleSuccess = (result: GeolocationPosition) => {
     setPosition(result)
@@ -55,14 +61,19 @@ export const useGeolocation = (options?: GeolocationOptions): {
   }
 
   useEffect(() => {
-    if (!("geolocation" in navigator)) {
+    if (!('geolocation' in navigator)) {
       handleError({
         code: ErrorCode.API_NOT_SUPPORTED,
         message: 'Geolocation not supported',
       })
     }
     setIsLoading(true)
-    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options)
+    navigator.geolocation.getCurrentPosition(
+      handleSuccess,
+      handleError,
+      options,
+    )
+    // eslint-disable-next-line
   }, [])
 
   return {
