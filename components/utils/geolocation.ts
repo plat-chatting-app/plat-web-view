@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react"
 
+export type GeolocationOptions = {
+  enableHighAccuracy?: boolean,
+  maximumAge?: number,
+  timeout?: number,
+}
+
 export type GeolocationCoordinates = Readonly<{
   latitude: number
   longitude: number
@@ -29,7 +35,7 @@ export type GeolocationPositionError = Readonly<{
   message: string
 }>
 
-export const useGeolocation = (): {
+export const useGeolocation = (options?: GeolocationOptions): {
   isLoading: boolean
   position?: GeolocationPosition
   error?: GeolocationPositionError
@@ -56,7 +62,7 @@ export const useGeolocation = (): {
       })
     }
     setIsLoading(true)
-    navigator.geolocation.getCurrentPosition(handleSuccess, handleError)
+    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options)
   }, [])
 
   return {

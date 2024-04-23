@@ -1,5 +1,6 @@
 'use client'
 import KakaoMap from '@plat/Map/kakao'
+import { memo } from 'react'
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -21,4 +22,4 @@ const Map = ({ apiType, apiKey, config, ...restProps }: Props) => {
   return null
 }
 
-export default Map
+export default memo(Map)

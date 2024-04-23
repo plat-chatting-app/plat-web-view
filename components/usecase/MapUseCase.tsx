@@ -4,10 +4,15 @@ import { useEffect } from 'react'
 import { getProcessEnv, useGeolocation } from '@plat/utils'
 import Map from '@plat/Map'
 import ErrorBoundary from '@plat/ErrorBoundary'
+import Spinner from '@plat/Spinner/index'
 
 const _MapUseCase = () => {
   const processEnv = getProcessEnv()
-  const { isLoading, position, error } = useGeolocation()
+  const { isLoading, position, error } = useGeolocation({
+    enableHighAccuracy: true,
+    maximumAge: 10000,
+    timeout: 5000,
+  })
 
   useEffect(() => {
     if (error) {
@@ -15,15 +20,13 @@ const _MapUseCase = () => {
     }
   }, [error])
 
-  if (isLoading) return null
+  if (isLoading || !position) return <Spinner />
   return (
     <Map
       apiType="kakao"
       apiKey={processEnv.KAKAO_JAVASCRIPT_APP_KEY as string}
       config={{
-        latLng: position
-          ? [position.coords.latitude, position.coords.longitude]
-          : [33.450701, 126.570667],
+        latLng: [position.coords.latitude, position.coords.longitude],
         zoom: 3,
       }}
       className="w-full h-screen"

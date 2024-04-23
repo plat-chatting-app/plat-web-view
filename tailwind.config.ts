@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import _colors from 'tailwindcss/colors'
 
 export const breakpoints = {
   'mobile-s': 320,
@@ -12,10 +13,12 @@ export const breakpoints = {
 }
 
 export const colors = {
+  ..._colors,
   success: '#84cc16', // lime-500
   info: '#3b82f6', // blue-500
   warning: '#f59e0b', // amber-500
   error: '#dc2626', // red-600
+  primary: '#8765CF',
 }
 
 const screens = Object.fromEntries(
