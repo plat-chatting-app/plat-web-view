@@ -56,7 +56,7 @@ abstract class AMap {
   setMinLevel: (minLevel: number) => void
   setMaxLevel: (maxLevel: number) => void
   panBy: (dx: number, dy: number) => void
-  panTo: (latlng_or_bounds: LatLng | LatLngBounds, padding: number) => void
+  panTo: (latlng_or_bounds: LatLng | LatLngBounds, padding?: number) => void
   addControl: (
     control: MapTypeControl | ZoomControl,
     position: ControlPosition,
@@ -91,6 +91,24 @@ export class Map extends AMap {
 }
 
 type TMap = typeof Map
+
+abstract class AMarker {
+  setMap: (map_or_roadview: Map | unknown | null) => void
+  getMap: () => Map
+  setPosition: (position: LatLng | unknown) => void
+  getPosition: () => LatLng
+}
+
+export class Marker extends AMarker {
+  constructor(
+    private map?: Map,
+    private position?: LatLng,
+  ) {
+    super()
+  }
+}
+
+type TMarker = typeof Marker
 
 export interface Options {
   center: LatLng
@@ -148,6 +166,7 @@ export type kakao = {
   maps: {
     LatLng: TLatLng
     Map: TMap
+    Marker: TMarker
     load: (callback?: () => void) => void
     event: {
       addListener: (

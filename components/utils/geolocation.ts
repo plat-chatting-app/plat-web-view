@@ -42,7 +42,7 @@ export const useGeolocation = (
   position?: GeolocationPosition
   error?: GeolocationPositionError
 } => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<GeolocationPositionError | undefined>(
     undefined,
   )
@@ -67,7 +67,6 @@ export const useGeolocation = (
         message: 'Geolocation not supported',
       })
     }
-    setIsLoading(true)
     navigator.geolocation.getCurrentPosition(
       handleSuccess,
       handleError,
