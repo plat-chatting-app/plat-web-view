@@ -12,17 +12,15 @@ const Page = () => {
     maximumAge: 10000,
     timeout: 5000,
   })
-
+  
+  if (isLoading) return <Spinner />
+  if (!position) return <Spinner />
   return (
     <Map
       apiType="kakao"
       apiKey={processEnv.KAKAO_JAVASCRIPT_APP_KEY as string}
-      isLoading={isLoading}
-      fallback={<Spinner />}
       config={{
-        latLng: position
-          ? [position.coords.latitude, position.coords.longitude]
-          : [33.450701, 126.570667],
+        latLng: [position.coords.latitude, position.coords.longitude],
         zoom: 3,
       }}
       className="w-full h-screen"
