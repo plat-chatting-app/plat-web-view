@@ -18,34 +18,38 @@ interface Props
 const Map = ({ apiKey, config, ...restProps }: Props) => {
   const containerRef = useRef(null)
 
-  const scriptRef = useRef<HTMLScriptElement | null>(null)
+  const [script, setScript] = useState<HTMLScriptElement | null>(null)
   const [mapApi, setMapApi] = useState<MapApi | null>(null)
   const [marker, setMarker] = useState<Marker | null>(null)
 
   useEffect(() => {
+    if (script) return
+
     const scriptId = 'kakao-map-api'
+    const scriptElement = document.createElement('script')
+    scriptElement.id = scriptId
+    scriptElement.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`
 
-    const kakaoMapScript = document.getElementById(scriptId)
-    if (kakaoMapScript) return
+    document.head.appendChild(scriptElement)
 
-    scriptRef.current = document.createElement('script')
-    scriptRef.current.id = scriptId
-    scriptRef.current.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`
-
-    document.head.appendChild(scriptRef.current)
+    setScript(scriptElement)
     // eslint-disable-next-line
-  }, [])
+  }, [script])
 
   return (
     <div {...restProps} ref={containerRef}>
       <CreateMap
-        scriptRef={scriptRef}
+        script={script}
         containerRef={containerRef}
         mapApiState={[mapApi, setMapApi]}
         markerState={[marker, setMarker]}
         config={config}
       >
-        <MoveMap mapApi={mapApi as MapApi} marker={marker as Marker} location={config.latLng}>
+        <MoveMap
+          mapApi={mapApi as MapApi}
+          marker={marker as Marker}
+          location={config.latLng}
+        >
           <IdleEvent
             mapApi={mapApi!}
             events={[

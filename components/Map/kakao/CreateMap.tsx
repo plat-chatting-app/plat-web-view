@@ -4,7 +4,7 @@ import { Map as MapApi, Marker, Options } from '@plat/Map/kakao-map-api'
 import { Position } from '@plat/Map/types'
 
 interface Props extends React.PropsWithChildren {
-  scriptRef: React.MutableRefObject<HTMLScriptElement | null>
+  script: HTMLScriptElement | null
   containerRef: React.MutableRefObject<HTMLDivElement | null>
   mapApiState: [MapApi | null, (value: MapApi | null) => void]
   markerState: [Marker | null, (value: Marker | null) => void]
@@ -12,7 +12,7 @@ interface Props extends React.PropsWithChildren {
 }
 
 const CreateMap = ({
-  scriptRef,
+  script,
   containerRef,
   mapApiState,
   markerState,
@@ -20,11 +20,11 @@ const CreateMap = ({
   children,
 }: Props) => {
   const [mapApi, setMapApi] = mapApiState
-  const [marker,setMarker] = markerState
-  
+  const [marker, setMarker] = markerState
+
   useEffect(() => {
-    if (scriptRef.current === null || mapApi || marker) return
-    scriptRef.current.onload = () => {
+    if (script === null || mapApi || marker) return
+    script.onload = () => {
       window.kakao.maps.load(() => {
         const center = new window.kakao.maps.LatLng(...config.latLng)
         const mapOption: Options = {
@@ -37,13 +37,9 @@ const CreateMap = ({
       })
     }
     // eslint-disable-next-line
-  }, [mapApi, marker])
+  }, [mapApi, marker, script])
 
-  return (
-    <>
-      {mapApi && children}
-    </>
-  )
+  return <>{mapApi && children}</>
 }
 
 export default CreateMap
