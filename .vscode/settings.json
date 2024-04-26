@@ -421,7 +421,7 @@
 	"editor.formatOnPaste": false,
 
 	// Format a file on save. A formatter must be available, the file must not be saved after delay, and the editor must not be shutting down.
-	"editor.formatOnSave": false,
+	"editor.formatOnSave": true,
 
 	// Controls if format on save formats the whole file or only modifications. Only applies when `editor.formatOnSave` is enabled.
 	//  - file: Format the whole file.
@@ -3446,7 +3446,7 @@
 	"css.lint.universalSelector": "ignore",
 
 	// Unknown at-rule.
-	"css.lint.unknownAtRules": "warning",
+	"css.lint.unknownAtRules": "ignore",
 
 	// Unknown property.
 	"css.lint.unknownProperties": "warning",
@@ -3641,7 +3641,7 @@
 	"scss.lint.universalSelector": "ignore",
 
 	// Unknown at-rule.
-	"scss.lint.unknownAtRules": "warning",
+	"scss.lint.unknownAtRules": "ignore",
 
 	// Unknown property.
 	"scss.lint.unknownProperties": "warning",
