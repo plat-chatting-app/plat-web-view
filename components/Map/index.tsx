@@ -1,7 +1,7 @@
 'use client'
 import KakaoMap from '@plat/Map/kakao'
 
-interface Props
+export interface MapProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
@@ -22,7 +22,7 @@ const Map = ({
   isLoading,
   fallback,
   ...divProps
-}: Props) => {
+}: MapProps) => {
   if (isLoading) return fallback ?? null
   if (!location) return fallback ?? null
 

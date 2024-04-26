@@ -19,6 +19,13 @@ export const colors = {
   warning: '#f59e0b', // amber-500
   error: '#dc2626', // red-600
   primary: '#8765CF',
+  'primary-light': '#9C83D1',
+  'primary-dark': '#7649D3',
+  'primary-100': '#B3A3D6',
+  'primary-300': '#9C83D1',
+  'primary-400': '#8E6FCF',
+  'primary-500': '#8765CF',
+  'primary-700': '#7649D3',
 }
 
 const screens = Object.fromEntries(

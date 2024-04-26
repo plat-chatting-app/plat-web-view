@@ -1,3 +1,5 @@
+'use client'
+
 import Spinner from '@plat/Spinner'
 import Image from 'next/image'
 
