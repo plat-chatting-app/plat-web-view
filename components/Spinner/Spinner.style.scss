@@ -1,0 +1,19 @@
+.plat-spinner-style {
+  @apply animate-spin;
+
+  &.primary {
+    @apply text-gray-200 dark:text-gray-600 fill-primary;
+  }
+
+  &.sm {
+    @apply w-8 h-8;
+  }
+
+  &.md {
+    @apply w-10 h-10;
+  }
+
+  &.lg {
+    @apply w-12 h-12;
+  }
+}

@@ -1,38 +1,73 @@
-"use client";
-import { useEffect, useRef } from "react";
-import { getProcessEnv } from "@plat/utils";
-import { Map as MapApi } from "@plat/Map/kakao-map-api";
-import CreateMap from "@plat/Map/kakao/CreateMap";
+'use client'
+import { useEffect, useRef, useState } from 'react'
+import { Map as MapApi, Marker } from '@plat/Map/kakao-map-api'
+import MapSetting from '@plat/Map/kakao/MapSetting'
+import MarkerSetting from '@plat/Map/kakao/MarkerSetting'
+import IdleEvent from '@plat/Map/kakao/IdleEvent'
 
 interface Props
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  > {}
+  > {
+  location: [number, number]
+  zoom?: number
+  apiKey: string
+}
 
-const Map = (props: Props) => {
-  const processEnv = getProcessEnv();
-  const container = useRef(null);
+const Map = ({ apiKey, location, zoom, ...restProps }: Props) => {
+  const containerRef = useRef(null)
 
-  const scriptRef = useRef<HTMLScriptElement | null>(null);
-  const mapApiRef = useRef<MapApi | null>(null);
+  const [script, setScript] = useState<HTMLScriptElement | null>(null)
+  const [mapApi, setMapApi] = useState<MapApi | null>(null)
+  const [marker, setMarker] = useState<Marker | null>(null)
 
   useEffect(() => {
-    if (!!scriptRef.current) return;
+    if (script) return
 
-    scriptRef.current = document.createElement("script");
-    scriptRef.current.id = "kakao-map-api";
-    scriptRef.current.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${processEnv.KAKAO_JAVASCRIPT_APP_KEY}&autoload=false`;
+    const scriptId = 'kakao-map-api'
+    const scriptElement = document.createElement('script')
+    scriptElement.id = scriptId
+    scriptElement.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&autoload=false`
 
-    document.head.appendChild(scriptRef.current);
+    document.head.appendChild(scriptElement)
+
+    setScript(scriptElement)
     // eslint-disable-next-line
-  }, [container]);
+  }, [script])
 
   return (
-    <CreateMap scriptRef={scriptRef} mapApiRef={mapApiRef}>
-      <div {...props} id="container" ref={container} />
-    </CreateMap>
-  );
-};
+    <div {...restProps} ref={containerRef}>
+      <MapSetting
+        script={script}
+        containerRef={containerRef}
+        mapApiState={[mapApi, setMapApi]}
+        markerState={[marker, setMarker]}
+        location={location}
+        zoom={zoom}
+      >
+        <MarkerSetting
+          mapApi={mapApi as MapApi}
+          marker={marker as Marker}
+          location={location}
+        >
+          <IdleEvent
+            mapApi={mapApi!}
+            events={[
+              (_map) => {
+                const level = _map.getLevel()
+                const latlng = _map.getCenter()
 
-export default Map;
+                const message = `지도 레벨은 ${level} 이고, 중심 좌표는 위도 ${latlng.getLat()}, 경도 ${latlng.getLng()} 입니다.`
+
+                return Promise.resolve(console.log(message))
+              },
+            ]}
+          />
+        </MarkerSetting>
+      </MapSetting>
+    </div>
+  )
+}
+
+export default Map

@@ -1,7 +1,7 @@
-import Map from "@plat/Map";
+import { MapService, options } from '@usecase/map'
 
 const Page = () => {
-  return <Map apiType="kakao" className="w-screen h-screen" />;
-};
+  return <MapService options={options} />
+}
 
-export default Page;
+export default Page

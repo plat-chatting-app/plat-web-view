@@ -1,0 +1,19 @@
+.plat-button-style {
+  @apply focus:outline-none;
+
+  &.primary {
+    @apply text-white bg-primary hover:bg-primary-dark focus:ring-primary-100 dark:bg-primary-400 dark:hover:bg-primary dark:focus:bg-primary-dark;
+  }
+
+  &.sm {
+    @apply text-xs px-3.5 py-2 rounded-lg focus:ring-2;
+  }
+
+  &.md {
+    @apply text-sm px-5 py-2.5 rounded-lg focus:ring-4;
+  }
+
+  &.lg {
+    @apply text-base px-6 py-3 rounded-xl focus:ring-4;
+  }
+}
