@@ -21,7 +21,7 @@ const Map = ({
   zoom,
   isLoading,
   fallback,
-  ...restProps
+  ...divProps
 }: Props) => {
   if (isLoading) return fallback ?? null
   if (!location) return fallback ?? null
@@ -32,7 +32,7 @@ const Map = ({
         apiKey={apiKey}
         location={location}
         zoom={zoom}
-        {...restProps}
+        {...divProps}
       />
     )
   }
