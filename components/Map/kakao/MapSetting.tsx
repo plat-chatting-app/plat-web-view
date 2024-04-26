@@ -1,22 +1,23 @@
 'use client'
 import { useEffect } from 'react'
 import { Map as MapApi, Marker, Options } from '@plat/Map/kakao-map-api'
-import { Position } from '@plat/Map/types'
 
 interface Props extends React.PropsWithChildren {
   script: HTMLScriptElement | null
   containerRef: React.MutableRefObject<HTMLDivElement | null>
   mapApiState: [MapApi | null, (value: MapApi | null) => void]
   markerState: [Marker | null, (value: Marker | null) => void]
-  config: Position
+  location: [number, number]
+  zoom?: number
 }
 
-const CreateMap = ({
+const MapSetting = ({
   script,
   containerRef,
   mapApiState,
   markerState,
-  config,
+  location,
+  zoom,
   children,
 }: Props) => {
   const [mapApi, setMapApi] = mapApiState
@@ -26,10 +27,10 @@ const CreateMap = ({
     if (script === null || mapApi || marker) return
     script.onload = () => {
       window.kakao.maps.load(() => {
-        const center = new window.kakao.maps.LatLng(...config.latLng)
+        const center = new window.kakao.maps.LatLng(...location)
         const mapOption: Options = {
           center,
-          level: config.zoom,
+          level: zoom ?? 3,
         }
 
         setMapApi(new window.kakao.maps.Map(containerRef.current, mapOption))
@@ -42,4 +43,4 @@ const CreateMap = ({
   return <>{mapApi && children}</>
 }
 
-export default CreateMap
+export default MapSetting

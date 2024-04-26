@@ -1,21 +1,21 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { Map as MapApi, Marker } from '@plat/Map/kakao-map-api'
-import { Position } from '@plat/Map/types'
-import CreateMap from '@plat/Map/kakao/CreateMap'
+import MapSetting from '@plat/Map/kakao/MapSetting'
 import IdleEvent from '@plat/Map/kakao/IdleEvent'
-import MoveMap from '@plat/Map/kakao/MoveMap'
+import MarkerSetting from '@plat/Map/kakao/MarkerSetting'
 
 interface Props
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
-  config: Position
+  location: [number, number]
+  zoom?: number
   apiKey: string
 }
 
-const Map = ({ apiKey, config, ...restProps }: Props) => {
+const Map = ({ apiKey, location, zoom, ...restProps }: Props) => {
   const containerRef = useRef(null)
 
   const [script, setScript] = useState<HTMLScriptElement | null>(null)
@@ -38,17 +38,18 @@ const Map = ({ apiKey, config, ...restProps }: Props) => {
 
   return (
     <div {...restProps} ref={containerRef}>
-      <CreateMap
+      <MapSetting
         script={script}
         containerRef={containerRef}
         mapApiState={[mapApi, setMapApi]}
         markerState={[marker, setMarker]}
-        config={config}
+        location={location}
+        zoom={zoom}
       >
-        <MoveMap
+        <MarkerSetting
           mapApi={mapApi as MapApi}
           marker={marker as Marker}
-          location={config.latLng}
+          location={location}
         >
           <IdleEvent
             mapApi={mapApi!}
@@ -63,8 +64,8 @@ const Map = ({ apiKey, config, ...restProps }: Props) => {
               },
             ]}
           />
-        </MoveMap>
-      </CreateMap>
+        </MarkerSetting>
+      </MapSetting>
     </div>
   )
 }

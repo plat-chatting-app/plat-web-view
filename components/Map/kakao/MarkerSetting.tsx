@@ -8,7 +8,7 @@ interface Props {
   children?: React.ReactNode
 }
 
-const MoveMap = ({ mapApi, marker, location, children }: Props) => {
+const MarkerSetting = ({ mapApi, marker, location, children }: Props) => {
   useEffect(() => {
     const latLng = new window.kakao.maps.LatLng(...location)
     mapApi.panTo(latLng)
@@ -20,4 +20,4 @@ const MoveMap = ({ mapApi, marker, location, children }: Props) => {
   return <>{children}</>
 }
 
-export default MoveMap
+export default MarkerSetting

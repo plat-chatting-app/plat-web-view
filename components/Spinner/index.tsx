@@ -1,16 +1,24 @@
 import clsx from 'clsx'
 import SpinnerLogo from './spinner-logo.svg'
+import './Spinner.style.scss'
 
 interface Props {
   className?: string
+  theme?: 'primary' | 'custom'
+  size?: 'sm' | 'md' | 'lg' | 'custom'
 }
 
-const Spinner = ({ className }: Props) => {
+const Spinner = ({ className, theme, size }: Props) => {
+  const defaultTheme = 'primary'
+  const defaultSize = 'sm'
+
   return (
     <div role="status">
       <SpinnerLogo
         className={clsx(
-          'animate-spin w-12 h-12 text-gray-200 dark:text-gray-600 fill-primary',
+          'animate-spin',
+          theme ?? defaultTheme,
+          size ?? defaultSize,
           className,
         )}
       />

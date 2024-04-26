@@ -7,20 +7,33 @@ interface Props
     HTMLDivElement
   > {
   apiType: 'kakao' | 'naver' | 'google'
-  config: {
-    latLng: [number, number]
-    zoom: number
-  }
+  location?: [number, number]
+  zoom?: number
   apiKey: string
   isLoading?: boolean
   fallback?: React.ReactNode
 }
 
-const Map = ({ apiType, apiKey, config, isLoading, fallback, ...restProps }: Props) => {
+const Map = ({
+  apiType,
+  apiKey,
+  location,
+  zoom,
+  isLoading,
+  fallback,
+  ...restProps
+}: Props) => {
   if (isLoading) return fallback ?? null
+  if (!location) return fallback ?? null
+
   if (apiType === 'kakao') {
     return (
-      <KakaoMap apiKey={apiKey} config={config} {...restProps} />
+      <KakaoMap
+        apiKey={apiKey}
+        location={location}
+        zoom={zoom}
+        {...restProps}
+      />
     )
   }
   return null
