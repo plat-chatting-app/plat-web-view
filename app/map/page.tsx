@@ -1,6 +1,6 @@
 'use client'
+import Loading from '@plat/Loading'
 import Map from '@plat/Map'
-import Spinner from '@plat/Spinner'
 import { getProcessEnv } from '@plat/utils'
 import { useGeolocation } from '@plat/utils/geolocation'
 
@@ -16,7 +16,7 @@ const Page = () => {
   return (
     <Map
       isLoading={isLoading}
-      fallback={<Spinner size="lg" />}
+      fallback={<Loading />}
       apiType="kakao"
       apiKey={processEnv.KAKAO_JAVASCRIPT_APP_KEY as string}
       location={

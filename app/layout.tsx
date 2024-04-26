@@ -28,7 +28,9 @@ export default function RootLayout({
     <html lang="ko">
       <Environment>
         <body className={inter.className}>
-          <div className="max-w-screen-sm mx-auto">{children}</div>
+          <div className='w-screen h-screen bg-orange-50'>
+            <div className="max-w-screen-sm mx-auto h-full bg-gray-50">{children}</div>
+          </div>
         </body>
       </Environment>
     </html>
