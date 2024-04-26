@@ -1,11 +1,10 @@
 'use client'
 import KakaoMap from '@plat/Map/kakao'
 
-export interface MapProps
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLDivElement>,
-    HTMLDivElement
-  > {
+export type MapProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+> & {
   apiType: 'kakao' | 'naver' | 'google'
   location?: [number, number]
   zoom?: number
@@ -28,12 +27,7 @@ const Map = ({
 
   if (apiType === 'kakao') {
     return (
-      <KakaoMap
-        apiKey={apiKey}
-        location={location}
-        zoom={zoom}
-        {...divProps}
-      />
+      <KakaoMap apiKey={apiKey} location={location} zoom={zoom} {...divProps} />
     )
   }
   return null

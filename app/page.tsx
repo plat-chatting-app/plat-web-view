@@ -1,12 +1,31 @@
+'use client'
+
 import Button from '@plat/Button'
-import Paper from '@plat/Paper'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Paper>
-        <Button size="lg">Click me</Button>
-      </Paper>
-    </main>
+    <div
+      role="navigation"
+      className="w-full h-full flex items-center justify-center"
+    >
+      <div className="flex flex-col items-center space-y-8">
+        <div className="flex flex-row items-center space-x-2">
+          <Image
+            src="/static/plat-logo-nobg.svg"
+            alt="logo"
+            width={40}
+            height={40}
+          />
+          <div role="heading" aria-level={1} className="text-2xl">
+            Plat 플랫
+          </div>
+        </div>
+        <Button as={(props) => <Link href="/map" {...props} />}>
+          지도 서비스 이용하기
+        </Button>
+      </div>
+    </div>
   )
 }

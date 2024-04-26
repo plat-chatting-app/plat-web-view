@@ -2,7 +2,7 @@
 
 import { colors } from 'tailwind.config'
 
-export interface ToastProps {
+export type ToastProps = {
   message?: string
   isOpen: boolean
   onConfirm?: () => void

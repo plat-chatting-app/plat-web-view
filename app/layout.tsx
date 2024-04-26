@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Noto_Sans_KR } from 'next/font/google'
+import clsx from 'clsx'
+import Environment from '@usecase/server/Environment'
 import './globals.scss'
-import Environment from '@plat/server/Environment'
 
-const inter = Inter({ subsets: ['latin'] })
+const notoSansKr = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Plat web app',
@@ -27,10 +28,15 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <Environment>
-        <body className={inter.className}>
-          <div className='w-screen h-screen bg-orange-50'>
-            <div className="max-w-screen-sm mx-auto h-full bg-gray-50">{children}</div>
-          </div>
+        <body
+          className={clsx(
+            notoSansKr.className,
+            'w-screen h-screen bg-orange-50',
+          )}
+        >
+          <main className="pt-1.5 max-w-screen-sm mx-auto h-full bg-gray-50">
+            {children}
+          </main>
         </body>
       </Environment>
     </html>

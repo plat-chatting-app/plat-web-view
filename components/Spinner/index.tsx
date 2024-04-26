@@ -4,18 +4,22 @@ import clsx from 'clsx'
 import SpinnerLogo from './spinner-logo.svg'
 import './Spinner.style.scss'
 
-interface Props {
+export type SpinnerProps = {
   className?: string
   theme?: 'primary' | 'custom' | 'default'
   size?: 'sm' | 'md' | 'lg' | 'custom' | 'default'
 }
 
-const Spinner = ({ className, theme = 'default', size = 'default' }: Props) => {
+const Spinner = ({
+  className,
+  theme = 'default',
+  size = 'default',
+}: SpinnerProps) => {
   return (
     <div role="status">
       <SpinnerLogo
         className={clsx(
-          'animate-spin',
+          'plat-spinner-style',
           theme === 'default' ? 'primary' : theme,
           size === 'default' ? 'md' : size,
           className,
