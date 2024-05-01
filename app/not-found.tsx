@@ -1,7 +1,7 @@
-import PlatError from '@plat-ui/Error'
+import SeeOther from '@plat-ui/SeeOther'
 
 const NotFound = () => {
-  return <PlatError pageType="not-found" />
+  return <SeeOther pageType="not-found" />
 }
 
 export default NotFound

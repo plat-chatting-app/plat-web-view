@@ -1,6 +1,6 @@
 'use client'
 
-import PlatError from '@plat-ui/Error'
+import SeeOther from '@plat-ui/SeeOther'
 
 type Props = {
   error: Error
@@ -9,7 +9,7 @@ type Props = {
 
 const GlobalError = ({ error, reset }: Props) => {
   return (
-    <PlatError pageType="error" description={error.message} onReset={reset} />
+    <SeeOther pageType="error" description={error.message} onReset={reset} />
   )
 }
 

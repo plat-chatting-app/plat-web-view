@@ -5,7 +5,7 @@ import Map from '@plat-ui/Map'
 import { Geolocation } from '@modules/geolocation'
 import type { DeviceType } from '@plat/device'
 import options from '@plat/map/options'
-import PlatError from '@plat-ui/Error'
+import SeeOther from '@plat-ui/SeeOther'
 
 interface Props {
   device: DeviceType
@@ -15,8 +15,7 @@ interface Props {
 const MapService = ({ device, os }: Props) => {
   if (device === 'mobile') {
     return (
-      <PlatError
-        pageType="error"
+      <SeeOther
         description={
           <span>
             <p>페이지 준비중입니다...</p>
