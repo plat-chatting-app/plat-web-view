@@ -4,7 +4,7 @@ import Loading from '@plat/Loading'
 import Map from '@plat-ui/Map'
 import { Geolocation } from '@modules/geolocation'
 import type { DeviceType } from '@plat/device'
-import { options } from '@plat/map/options'
+import options from '@plat/map/options'
 
 interface Props {
   device: DeviceType

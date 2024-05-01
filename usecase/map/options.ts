@@ -17,7 +17,9 @@ const kakao = {
   zoom: 3,
 } as const
 
-export const options = {
+const options = {
   geolocation,
   kakao,
 }
+
+export default options
