@@ -3,13 +3,19 @@ import { MapService, options } from '@plat/map'
 
 type PageProps = {
   searchParams: {
-    viewport: DeviceType
+    _viewport: DeviceType
+    _os: string
   }
 }
 
-const Page = ({ searchParams: { viewport } }: PageProps) => {
-  if (viewport === 'mobile') {
-    return '페이지 준비중입니다...'
+const Page = ({ searchParams: { _viewport, _os } }: PageProps) => {
+  if (_viewport === 'mobile') {
+    return (
+      <div>
+        <p>페이지 준비중입니다...</p>
+        <p>현재 OS: {_os}</p>
+      </div>
+    )
   }
   return <MapService options={options} />
 }
