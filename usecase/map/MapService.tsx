@@ -23,10 +23,11 @@ const MapService = ({ device, os }: Props) => {
   if (device === 'desktop') {
     return (
       <Geolocation options={options.geolocation}>
-        {({ isLoading, position }) => (
+        {({ isLoading, position, error }) => (
           <Map
             isLoading={isLoading}
             fallback={<Loading />}
+            error={error && new Error(error.message)}
             apiType="kakao"
             apiKey={options.kakao.apiKey}
             location={
@@ -39,6 +40,7 @@ const MapService = ({ device, os }: Props) => {
       </Geolocation>
     )
   }
+  throw new Error('맵 로딩 중에 에러가 발생했습니다')
 }
 
 export default MapService

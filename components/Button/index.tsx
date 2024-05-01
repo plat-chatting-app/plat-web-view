@@ -7,13 +7,15 @@ export type ButtonProps = React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > & {
-  theme?: 'primary' | 'default' | 'custom'
+  variant?: 'contained' | 'outlined'
+  color?: 'primary' | 'default' | 'custom'
   size?: 'sm' | 'md' | 'lg' | 'default' | 'custom'
   as?: <T = any>(props: T) => JSX.Element
 }
 
 const Button = ({
-  theme = 'default',
+  variant = 'contained',
+  color = 'default',
   size = 'default',
   className,
   children,
@@ -22,8 +24,9 @@ const Button = ({
 }: ButtonProps) => {
   const tailwindCss: string = clsx(
     'plat-button-style',
-    theme === 'default' ? 'primary' : theme,
+    color === 'default' ? 'primary' : color,
     size === 'default' ? 'md' : size,
+    variant,
   )
 
   if (as) {

@@ -1,7 +1,5 @@
-import ErrorBoundary from '@plat-ui/ErrorBoundary'
-
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <ErrorBoundary>{children}</ErrorBoundary>
+  return <>{children}</>
 }
 
 export default Layout

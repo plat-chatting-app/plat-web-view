@@ -6,13 +6,13 @@ import './Spinner.style.scss'
 
 export type SpinnerProps = {
   className?: string
-  theme?: 'primary' | 'custom' | 'default'
+  color?: 'primary' | 'custom' | 'default'
   size?: 'sm' | 'md' | 'lg' | 'custom' | 'default'
 }
 
 const Spinner = ({
   className,
-  theme = 'default',
+  color = 'default',
   size = 'default',
 }: SpinnerProps) => {
   return (
@@ -20,7 +20,7 @@ const Spinner = ({
       <SpinnerLogo
         className={clsx(
           'plat-spinner-style',
-          theme === 'default' ? 'primary' : theme,
+          color === 'default' ? 'primary' : color,
           size === 'default' ? 'md' : size,
           className,
         )}
