@@ -1,5 +1,5 @@
 import type { DeviceType } from '@plat/device'
-import { MapService, options } from '@plat/map'
+import { MapService } from '@plat/map'
 
 type PageProps = {
   searchParams: {
@@ -9,15 +9,7 @@ type PageProps = {
 }
 
 const Page = ({ searchParams: { _viewport, _os } }: PageProps) => {
-  if (_viewport === 'mobile') {
-    return (
-      <div>
-        <p>페이지 준비중입니다...</p>
-        <p>현재 OS: {_os}</p>
-      </div>
-    )
-  }
-  return <MapService options={options} />
+  return <MapService device={_viewport} os={_os} />
 }
 
 export default Page

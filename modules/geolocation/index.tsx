@@ -18,13 +18,15 @@ export type {
 
 export { ErrorCode }
 
-export const useGeolocation = (
-  options?: GeolocationOptions,
-): {
+export type GeolocationState = {
   isLoading: boolean
   position?: GeolocationPosition
   error?: GeolocationPositionError
-} => {
+}
+
+export const useGeolocation = (
+  options?: GeolocationOptions,
+): GeolocationState => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<GeolocationPositionError | undefined>(
     undefined,
@@ -63,4 +65,14 @@ export const useGeolocation = (
     position,
     error,
   }
+}
+
+export type GeolocationProps = {
+  options: GeolocationOptions
+  children?: (context: GeolocationState) => React.ReactNode
+}
+
+export const Geolocation = ({ options, children }: GeolocationProps) => {
+  const state = useGeolocation(options)
+  return <>{children?.(state)}</>
 }
