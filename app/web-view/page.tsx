@@ -1,8 +1,9 @@
+import type { DeviceType } from '@usecase/device'
 import { MapService, options } from '@usecase/map'
 
 type PageProps = {
   searchParams: {
-    viewport: 'mobile' | 'desktop'
+    viewport: DeviceType
   }
 }
 
