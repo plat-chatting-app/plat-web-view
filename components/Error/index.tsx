@@ -5,7 +5,7 @@ import Button from '@plat-ui/Button'
 
 export type ErrorProps = {
   pageType: 'not-found' | 'error'
-  description?: string
+  description?: React.ReactNode
   onReset?: () => void
   replace?: {
     path?: string

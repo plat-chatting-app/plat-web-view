@@ -5,6 +5,7 @@ import Map from '@plat-ui/Map'
 import { Geolocation } from '@modules/geolocation'
 import type { DeviceType } from '@plat/device'
 import options from '@plat/map/options'
+import PlatError from '@plat-ui/Error'
 
 interface Props {
   device: DeviceType
@@ -14,12 +15,18 @@ interface Props {
 const MapService = ({ device, os }: Props) => {
   if (device === 'mobile') {
     return (
-      <div>
-        <p>페이지 준비중입니다...</p>
-        <p>현재 OS: {os}</p>
-      </div>
+      <PlatError
+        pageType="error"
+        description={
+          <span>
+            <p>페이지 준비중입니다...</p>
+            <p>현재 OS: {os}</p>
+          </span>
+        }
+      />
     )
   }
+
   if (device === 'desktop') {
     return (
       <Geolocation options={options.geolocation}>
