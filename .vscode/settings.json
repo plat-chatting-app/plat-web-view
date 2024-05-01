@@ -1250,7 +1250,7 @@
 	//  - side: Show the Activity Bar to the side of the Primary Side Bar.
 	//  - top: Show the Activity Bar on top of the Primary Side Bar.
 	//  - hidden: Hide the Activity Bar.
-	"workbench.activityBar.location": "side",
+	"workbench.activityBar.location": "default",
 
 	// Controls whether to automatically resume available working changes stored in the cloud for the current workspace.
 	//  - onReload: Automatically resume available working changes from the cloud on window reload.
