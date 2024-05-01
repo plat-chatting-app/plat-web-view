@@ -7,8 +7,8 @@ import './globals.scss'
 const notoSansKr = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Plat web app',
-  description: 'Plat 웹뷰',
+  title: '플랫',
+  description: '지도 안에서 만나는 이야기',
   icons: {
     icon: [
       {
