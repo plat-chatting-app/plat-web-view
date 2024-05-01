@@ -18,15 +18,21 @@ const SeeOther = ({ pageType, description, onReset, replace }: ErrorProps) => {
     <div className="bg-gray-200 w-full px-16 md:px-0 h-screen flex items-center justify-center">
       <div className="bg-white border border-gray-200 flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg shadow-2xl">
         {pageType && (
-          <>
-            <p className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-wider text-gray-300">
-              {pageType === 'error' ? 'Error!' : '404'}
-            </p>
-            <p className="text-gray-500 mt-4 text-center">
-              {pageType === 'not-found' ? 'Page Not Found' : description}
-            </p>
-          </>
+          <p className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-wider text-gray-300">
+            {pageType === 'error'
+              ? 'Error!'
+              : pageType === 'not-found'
+                ? '404'
+                : null}
+          </p>
         )}
+        <p className="text-gray-500 mt-4 text-center">
+          {pageType === 'not-found'
+            ? description ?? 'Page Not Found'
+            : pageType === 'error'
+              ? description ?? '에러가 발생했습니다'
+              : description}
+        </p>
         <div className="flex flex-col space-y-4 w-full py-2 border-b-2">
           <div className="flex flex-row justify-center w-full">
             {onReset && (
