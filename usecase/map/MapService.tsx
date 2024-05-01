@@ -1,11 +1,8 @@
 'use client'
 
-import Loading from '@usecase/Loading'
-import Map, { MapProps } from '@plat/Map'
-import {
-  useGeolocation,
-  type GeolocationOptions,
-} from '@plat/utils/geolocation'
+import Loading from '@plat/Loading'
+import Map, { MapProps } from '@plat-ui/Map'
+import { useGeolocation, GeolocationOptions } from '@modules/geolocation'
 
 interface Props {
   options: {

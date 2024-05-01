@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react'
-import { Map as MapApi, Marker, Options } from '@plat/Map/kakao-map-api'
+import { Map as MapApi, Marker, Options } from '@modules/kakao-map/api'
 
 interface Props extends React.PropsWithChildren {
   script: HTMLScriptElement | null

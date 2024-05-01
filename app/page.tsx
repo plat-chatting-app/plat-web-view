@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@plat/Button'
+import Button from '@plat-ui/Button'
 import Image from 'next/image'
 import Link from 'next/link'
 

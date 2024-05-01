@@ -1,4 +1,4 @@
-import { kakao } from '@plat/Map/kakao-map-api'
+import { kakao } from '@modules/kakao-map/api'
 
 export {}
 

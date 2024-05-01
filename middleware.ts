@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse, userAgent } from 'next/server'
-import { DEVICE_TYPE } from '@usecase/device'
+import { DEVICE_TYPE } from '@plat/device'
 
 export function middleware(request: NextRequest) {
   const url = request.nextUrl

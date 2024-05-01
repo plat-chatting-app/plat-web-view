@@ -1,5 +1,5 @@
 'use client'
-import KakaoMap from '@plat/Map/kakao'
+import KakaoMap from '@modules/kakao-map'
 
 export type MapProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,

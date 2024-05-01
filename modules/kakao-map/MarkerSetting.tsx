@@ -1,4 +1,4 @@
-import { Map, Marker } from '@plat/Map/kakao-map-api'
+import { Map, Marker } from '@modules/kakao-map/api'
 import { useEffect } from 'react'
 
 interface Props {

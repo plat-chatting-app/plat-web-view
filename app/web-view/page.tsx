@@ -1,5 +1,5 @@
-import type { DeviceType } from '@usecase/device'
-import { MapService, options } from '@usecase/map'
+import type { DeviceType } from '@plat/device'
+import { MapService, options } from '@plat/map'
 
 type PageProps = {
   searchParams: {

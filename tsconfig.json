@@ -18,9 +18,10 @@
       }
     ],
     "paths": {
-      "@usecase/*": ["./usecase/*"],
+      "@plat/*": ["./usecase/*"],
       "@app/*": ["./app/*"],
-      "@plat/*": ["./components/*"],
+      "@plat-ui/*": ["./components/*"],
+      "@modules/*": ["./modules/*"],
       "tailwind.config": ["./tailwind.config.ts"],
     }
   },
