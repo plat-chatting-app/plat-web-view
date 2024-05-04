@@ -23,7 +23,7 @@ const SeeOther = ({ pageType, description, onReset, replace }: ErrorProps) => {
               ? 'Error!'
               : pageType === 'not-found'
                 ? '404'
-                : null}
+                : '페이지 준비중'}
           </p>
         )}
         <p className="text-gray-500 mt-4 text-center">
