@@ -34,7 +34,7 @@ export default function RootLayout({
             'w-screen h-screen bg-orange-50',
           )}
         >
-          <main className="pt-1.5 max-w-screen-sm mx-auto h-full bg-gray-50">
+          <main className="pt-1.5 w-full xl:max-w-screen-md mx-auto h-full bg-gray-50">
             {children}
           </main>
         </body>

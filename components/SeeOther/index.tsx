@@ -2,9 +2,11 @@
 
 import Link from 'next/link'
 import Button from '@plat-ui/Button'
+import Title from '@plat-ui/SeeOther/Title'
 
 export type ErrorProps = {
   pageType?: 'not-found' | 'error'
+  title?: React.ReactNode
   description?: React.ReactNode
   onReset?: () => void
   replace?: {
@@ -13,18 +15,26 @@ export type ErrorProps = {
   }
 }
 
-const SeeOther = ({ pageType, description, onReset, replace }: ErrorProps) => {
+const SeeOther = ({
+  pageType,
+  description,
+  onReset,
+  replace,
+  title,
+}: ErrorProps) => {
   return (
-    <div className="bg-gray-200 w-full px-16 md:px-0 h-screen flex items-center justify-center">
-      <div className="bg-white border border-gray-200 flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg shadow-2xl">
-        {pageType && (
-          <p className="text-6xl md:text-7xl lg:text-9xl font-bold tracking-wider text-gray-300">
+    <div className="bg-gray-200 w-full px-8 mobile-l:px-20 sm:px-0 h-screen flex items-center justify-center">
+      <div className="bg-white border border-gray-200 w-full sm:max-w-md flex flex-col items-center justify-center px-4 md:px-8 lg:px-24 py-8 rounded-lg shadow-2xl">
+        {pageType && !title ? (
+          <Title>
             {pageType === 'error'
               ? 'Error!'
               : pageType === 'not-found'
                 ? '404'
-                : '페이지 준비중'}
-          </p>
+                : null}
+          </Title>
+        ) : (
+          <Title>{title}</Title>
         )}
         <p className="text-gray-500 mt-4 text-center">
           {pageType === 'not-found'
