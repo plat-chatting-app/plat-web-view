@@ -1,16 +1,10 @@
 'use client'
 
-import { createContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { WebViewDataContext } from '@plat/webview/context'
+import WebViewLocation from '@plat/webview/WebViewLocation'
 
-export interface WebViewContextValue {
-  message: string | null
-}
-
-export const WebViewContext = createContext<WebViewContextValue>({
-  message: null,
-})
-
-export const WebViewProvider = ({
+export const WebViewDataProvider = ({
   children,
 }: {
   children: React.ReactNode
@@ -29,12 +23,10 @@ export const WebViewProvider = ({
     return window.removeEventListener('message', handler)
   }, [])
   return (
-    <WebViewContext.Provider
-      value={{
-        message,
-      }}
-    >
+    <WebViewDataContext.Provider value={message}>
       {children}
-    </WebViewContext.Provider>
+    </WebViewDataContext.Provider>
   )
 }
+
+export { WebViewDataContext, WebViewLocation }

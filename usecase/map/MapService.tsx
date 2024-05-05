@@ -1,19 +1,21 @@
 'use client'
 
+import Image from 'next/image'
+import { useContext } from 'react'
 import Loading from '@plat/Loading'
 import Map from '@plat-ui/Map'
 import { Geolocation } from '@modules/geolocation'
 import options from '@plat/map/options'
 import SeeOther from '@plat-ui/SeeOther'
-import Image from 'next/image'
+import { WebViewDataContext } from '@plat/webview'
 
 type Props = {
   isWebView: boolean
-  os?: string
-  deviceEnv?: string
 }
 
-const MapService = ({ isWebView, os, deviceEnv }: Props) => {
+const MapService = ({ isWebView }: Props) => {
+  const message = useContext(WebViewDataContext)
+
   return isWebView ? (
     <SeeOther
       title={
@@ -27,8 +29,8 @@ const MapService = ({ isWebView, os, deviceEnv }: Props) => {
       description={
         <span>
           <p>페이지 준비중입니다...</p>
-          <p>현재 OS: {os}</p>
-          <p>현재 환경: {deviceEnv}</p>
+          <p>메시지: {message}</p>
+          <p>메시지 타입: {typeof message}</p>
         </span>
       }
     />
