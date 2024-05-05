@@ -11,9 +11,10 @@ import Image from 'next/image'
 interface Props {
   device: DeviceType
   os?: string
+  browser?: string
 }
 
-const MapService = ({ device, os }: Props) => {
+const MapService = ({ device, os, browser }: Props) => {
   if (device === 'mobile') {
     return (
       <SeeOther
@@ -29,6 +30,7 @@ const MapService = ({ device, os }: Props) => {
           <span>
             <p>페이지 준비중입니다...</p>
             <p>현재 OS: {os}</p>
+            <p>현재 환경: {browser}</p>
           </span>
         }
       />

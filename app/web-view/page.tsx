@@ -5,11 +5,12 @@ type PageProps = {
   searchParams: {
     _viewport: DeviceType
     _os: string
+    _browser?: string | undefined
   }
 }
 
-const Page = ({ searchParams: { _viewport, _os } }: PageProps) => {
-  return <MapService device={_viewport} os={_os} />
+const Page = ({ searchParams: { _viewport, _os, _browser } }: PageProps) => {
+  return <MapService device={_viewport} os={_os} browser={_browser} />
 }
 
 export default Page
