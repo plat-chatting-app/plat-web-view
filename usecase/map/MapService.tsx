@@ -4,7 +4,11 @@ import Image from 'next/image'
 import { useContext, useEffect, useState } from 'react'
 import Loading from '@plat/Loading'
 import Map from '@plat-ui/Map'
-import { Geolocation } from '@modules/geolocation'
+import {
+  ErrorCode,
+  Geolocation,
+  GeolocationPositionError,
+} from '@modules/geolocation'
 import options from '@plat/map/options'
 import SeeOther from '@plat-ui/SeeOther'
 import { WebViewDataContext } from '@plat/webview'
@@ -17,6 +21,13 @@ const MapService = () => {
     if (typeof window === 'undefined') return
     setIsWebView(window.ReactNativeWebView)
   }, [])
+
+  const handleError = (error?: GeolocationPositionError) => {
+    if (error?.code === ErrorCode.PERMISSION_DENIED) {
+      throw new Error('위치 권한을 거부했습니다. 권한을 재설정해주세요.')
+    }
+    throw new Error(error?.message)
+  }
 
   if (isWebView === null) return
   return isWebView ? (
@@ -43,7 +54,7 @@ const MapService = () => {
         <Map
           isLoading={isLoading}
           fallback={<Loading />}
-          error={error && new Error(error.message)}
+          error={handleError(error)}
           apiType="kakao"
           apiKey={options.kakao.apiKey}
           location={
