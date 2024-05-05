@@ -9,14 +9,10 @@ import options from '@plat/map/options'
 import SeeOther from '@plat-ui/SeeOther'
 import { WebViewDataContext } from '@plat/webview'
 
-type Props = {
-  isWebView: boolean
-}
-
-const MapService = ({ isWebView }: Props) => {
+const MapService = () => {
   const message = useContext(WebViewDataContext)
 
-  return isWebView ? (
+  return window.ReactNativeWebView ? (
     <SeeOther
       title={
         <Image
