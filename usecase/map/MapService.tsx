@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Loading from '@plat/Loading'
 import Map from '@plat-ui/Map'
 import { Geolocation } from '@modules/geolocation'
@@ -11,8 +11,15 @@ import { WebViewDataContext } from '@plat/webview'
 
 const MapService = () => {
   const message = useContext(WebViewDataContext)
+  const [isWebView, setIsWebView] = useState<boolean | null>(null)
 
-  return window.ReactNativeWebView ? (
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setIsWebView(window.ReactNativeWebView)
+  }, [])
+
+  if (isWebView === null) return
+  return isWebView ? (
     <SeeOther
       title={
         <Image
