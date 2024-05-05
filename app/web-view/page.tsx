@@ -1,16 +1,21 @@
-import type { DeviceType } from '@plat/device'
 import { MapService } from '@plat/map'
+import type { UserAgent } from '@plat/server'
+import { checkIsWebView } from '@plat/utils/webview'
 
-type PageProps = {
+const Page = ({
+  searchParams,
+}: {
   searchParams: {
-    _viewport: DeviceType
-    _os: string
-    _browser?: string | undefined
+    userAgent: string
   }
-}
+}) => {
+  const userAgent: UserAgent = JSON.parse(searchParams.userAgent)
 
-const Page = ({ searchParams: { _viewport, _os, _browser } }: PageProps) => {
-  return <MapService device={_viewport} os={_os} browser={_browser} />
+  return (
+    <MapService
+      isWebView={checkIsWebView(userAgent.os.name, userAgent.browser.name)}
+    />
+  )
 }
 
 export default Page

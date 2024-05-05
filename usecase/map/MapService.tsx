@@ -3,61 +3,49 @@
 import Loading from '@plat/Loading'
 import Map from '@plat-ui/Map'
 import { Geolocation } from '@modules/geolocation'
-import type { DeviceType } from '@plat/device'
 import options from '@plat/map/options'
 import SeeOther from '@plat-ui/SeeOther'
 import Image from 'next/image'
 
-interface Props {
-  device: DeviceType
-  os?: string
-  browser?: string
+type Props = {
+  isWebView: boolean
 }
 
-const MapService = ({ device, os, browser }: Props) => {
-  if (device === 'mobile') {
-    return (
-      <SeeOther
-        title={
-          <Image
-            src="/static/plat-logo-nobg.svg"
-            alt="plat-logo"
-            width={40}
-            height={40}
-          />
-        }
-        description={
-          <span>
-            <p>페이지 준비중입니다...</p>
-            <p>현재 OS: {os}</p>
-            <p>현재 환경: {browser}</p>
-          </span>
-        }
-      />
-    )
-  }
-
-  if (device === 'desktop') {
-    return (
-      <Geolocation options={options.geolocation}>
-        {({ isLoading, position, error }) => (
-          <Map
-            isLoading={isLoading}
-            fallback={<Loading />}
-            error={error && new Error(error.message)}
-            apiType="kakao"
-            apiKey={options.kakao.apiKey}
-            location={
-              position && [position.coords.latitude, position.coords.longitude]
-            }
-            zoom={options.kakao.zoom}
-            className="w-full h-screen"
-          />
-        )}
-      </Geolocation>
-    )
-  }
-  throw new Error('맵 로딩 중에 에러가 발생했습니다')
+const MapService = ({ isWebView }: Props) => {
+  return isWebView ? (
+    <SeeOther
+      title={
+        <Image
+          src="/static/plat-logo-nobg.svg"
+          alt="plat-logo"
+          width={40}
+          height={40}
+        />
+      }
+      description={
+        <span>
+          <p>페이지 준비중입니다...</p>
+        </span>
+      }
+    />
+  ) : (
+    <Geolocation options={options.geolocation}>
+      {({ isLoading, position, error }) => (
+        <Map
+          isLoading={isLoading}
+          fallback={<Loading />}
+          error={error && new Error(error.message)}
+          apiType="kakao"
+          apiKey={options.kakao.apiKey}
+          location={
+            position && [position.coords.latitude, position.coords.longitude]
+          }
+          zoom={options.kakao.zoom}
+          className="w-full h-screen"
+        />
+      )}
+    </Geolocation>
+  )
 }
 
 export default MapService
