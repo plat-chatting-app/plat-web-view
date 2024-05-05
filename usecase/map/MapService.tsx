@@ -23,10 +23,11 @@ const MapService = () => {
   }, [])
 
   const handleError = (error?: GeolocationPositionError) => {
-    if (error?.code === ErrorCode.PERMISSION_DENIED) {
+    if (!error) return undefined
+    if (error.code === ErrorCode.PERMISSION_DENIED) {
       throw new Error('위치 권한을 거부했습니다. 권한을 재설정해주세요.')
     }
-    throw new Error(error?.message)
+    throw new Error(error.message)
   }
 
   if (isWebView === null) return
