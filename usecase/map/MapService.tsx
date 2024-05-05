@@ -29,7 +29,7 @@ const MapService = ({ isWebView }: Props) => {
       description={
         <span>
           <p>페이지 준비중입니다...</p>
-          <p>메시지: {message}</p>
+          <p>메시지: {JSON.stringify(message)}</p>
           <p>메시지 타입: {typeof message}</p>
         </span>
       }
