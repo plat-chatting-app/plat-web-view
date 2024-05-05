@@ -10,10 +10,13 @@ const Page = ({
   }
 }) => {
   const userAgent: UserAgent = JSON.parse(searchParams.userAgent)
+  const { os, browser } = userAgent
 
   return (
     <MapService
-      isWebView={checkIsWebView(userAgent.os.name, userAgent.browser.name)}
+      isWebView={checkIsWebView(os.name, browser.name)}
+      os={os.name}
+      deviceEnv={browser.name}
     />
   )
 }

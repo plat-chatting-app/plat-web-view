@@ -9,9 +9,11 @@ import Image from 'next/image'
 
 type Props = {
   isWebView: boolean
+  os?: string
+  deviceEnv?: string
 }
 
-const MapService = ({ isWebView }: Props) => {
+const MapService = ({ isWebView, os, deviceEnv }: Props) => {
   return isWebView ? (
     <SeeOther
       title={
@@ -25,6 +27,8 @@ const MapService = ({ isWebView }: Props) => {
       description={
         <span>
           <p>페이지 준비중입니다...</p>
+          <p>현재 OS: {os}</p>
+          <p>현재 환경: {deviceEnv}</p>
         </span>
       }
     />
