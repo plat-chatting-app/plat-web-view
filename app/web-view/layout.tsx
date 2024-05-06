@@ -1,7 +1,5 @@
-import { WebViewDataProvider } from '@plat/webview'
-
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  return <WebViewDataProvider>{children}</WebViewDataProvider>
+  return <>{children}</>
 }
 
 export default Layout

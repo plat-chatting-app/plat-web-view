@@ -22,6 +22,11 @@ const WebViewLocation = ({ children }: Props) => {
   const message = useContext(WebViewDataContext)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.ReactNativeWebView?.postMessage(WebViewAction.LOCATION)
+  }, [])
+
+  useEffect(() => {
     if (!message) {
       setData(undefined)
       setIsLoading(false)
@@ -33,7 +38,7 @@ const WebViewLocation = ({ children }: Props) => {
       return
     }
 
-    if (message.startsWith(WebViewState.Loading)) {
+    if (message.includes(WebViewState.Loading)) {
       setIsLoading(true)
       return
     }
@@ -45,6 +50,8 @@ const WebViewLocation = ({ children }: Props) => {
 
     const payload: WebViewData<[number, number]> = JSON.parse(message)
     setData(payload.result)
+    setIsLoading(false)
+    setError(undefined)
   }, [message])
 
   return (

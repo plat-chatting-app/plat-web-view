@@ -1,7 +1,5 @@
 'use client'
 
-import Image from 'next/image'
-import { useContext } from 'react'
 import Loading from '@plat/Loading'
 import Map from '@plat-ui/Map'
 import {
@@ -10,16 +8,13 @@ import {
   GeolocationPositionError,
 } from '@modules/geolocation'
 import options from '@plat/map/options'
-import SeeOther from '@plat-ui/SeeOther'
-import { WebViewDataContext } from '@plat/webview'
+import { WebViewDataProvider, WebViewLocation } from '@plat/webview'
 
 type Props = {
   isWebView: boolean
 }
 
 const MapService = ({ isWebView }: Props) => {
-  const message = useContext(WebViewDataContext)
-
   const handleError = (error?: GeolocationPositionError) => {
     if (!error) return undefined
     if (error.code === ErrorCode.PERMISSION_DENIED) {
@@ -28,25 +23,22 @@ const MapService = ({ isWebView }: Props) => {
     throw new Error(error.message)
   }
 
-  if (isWebView === null) return
   return isWebView ? (
-    <SeeOther
-      title={
-        <Image
-          src="/static/plat-logo-nobg.svg"
-          alt="plat-logo"
-          width={40}
-          height={40}
-        />
-      }
-      description={
-        <span>
-          <p>페이지 준비중입니다...</p>
-          <p>메시지: {JSON.stringify(message)}</p>
-          <p>메시지 타입: {typeof message}</p>
-        </span>
-      }
-    />
+    <WebViewDataProvider>
+      <WebViewLocation>
+        {({ isLoading, data }) => (
+          <Map
+            isLoading={isLoading}
+            fallback={<Loading />}
+            apiType="kakao"
+            apiKey={options.kakao.apiKey}
+            location={data}
+            zoom={options.kakao.zoom}
+            className="w-full h-screen"
+          />
+        )}
+      </WebViewLocation>
+    </WebViewDataProvider>
   ) : (
     <Geolocation options={options.geolocation}>
       {({ isLoading, position, error }) => (

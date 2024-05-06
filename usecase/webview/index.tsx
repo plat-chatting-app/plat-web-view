@@ -12,7 +12,7 @@ export const WebViewDataProvider = ({
   const [message, setMessage] = useState<string | null>(null)
 
   useEffect(() => {
-    const handler = (ev: any) => {
+    const handler = (ev: Readonly<MessageEvent>) => {
       if (typeof ev === 'undefined') {
         console.error('message event is undefined')
         return
@@ -20,8 +20,8 @@ export const WebViewDataProvider = ({
       setMessage(ev.data)
     }
     window.addEventListener('message', handler)
-    return window.removeEventListener('message', handler)
   }, [])
+
   return (
     <WebViewDataContext.Provider value={message}>
       {children}

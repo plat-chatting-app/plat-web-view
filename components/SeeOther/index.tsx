@@ -3,12 +3,14 @@
 import Link from 'next/link'
 import Button from '@plat-ui/Button'
 import Title from '@plat-ui/SeeOther/Title'
+import clsx from 'clsx'
 
 export type ErrorProps = {
   pageType?: 'not-found' | 'error'
   title?: React.ReactNode
   description?: React.ReactNode
   onReset?: () => void
+  noReplace?: boolean
   replace?: {
     path?: string
     text?: string
@@ -19,6 +21,7 @@ const SeeOther = ({
   pageType,
   description,
   onReset,
+  noReplace,
   replace,
   title,
 }: ErrorProps) => {
@@ -36,14 +39,19 @@ const SeeOther = ({
         ) : (
           <Title>{title}</Title>
         )}
-        <p className="text-gray-500 mt-4 text-center">
+        <span className="text-gray-500 mt-4 text-center">
           {pageType === 'not-found'
             ? description ?? 'Page Not Found'
             : pageType === 'error'
               ? description ?? '에러가 발생했습니다'
               : description}
-        </p>
-        <div className="flex flex-col space-y-4 w-full py-2 border-b-2">
+        </span>
+        <div
+          className={clsx(
+            'flex flex-col space-y-4 w-full py-2',
+            !noReplace && 'border-b-2',
+          )}
+        >
           <div className="flex flex-row justify-center w-full">
             {onReset && (
               <Button
@@ -57,14 +65,16 @@ const SeeOther = ({
             )}
           </div>
         </div>
-        <Button
-          className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 mt-6 rounded transition duration-150"
-          as={(props) => (
-            <Link href={replace?.path ?? '/'} {...props}>
-              {replace?.text ?? '홈으로 돌아가기'}
-            </Link>
-          )}
-        />
+        {!noReplace && (
+          <Button
+            className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 mt-6 rounded transition duration-150"
+            as={(props) => (
+              <Link href={replace?.path ?? '/'} {...props}>
+                {replace?.text ?? '홈으로 돌아가기'}
+              </Link>
+            )}
+          />
+        )}
       </div>
     </div>
   )

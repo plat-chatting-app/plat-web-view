@@ -15,4 +15,6 @@ export type WebViewActionKey =
 export const WebViewState = {
   Loading: 'loading',
   Error: 'error',
-}
+} as const
+
+export type WebViewStateKey = (typeof WebViewState)[keyof typeof WebViewState]
