@@ -6599,5 +6599,9 @@
 
 	// This extension will process files in `node_modules`.
 	"prettier.withNodeModules": false,
+	"accessibility.signals.progress": {
+		"announcement": "auto",
+		"sound": "auto"
+	},
 
 }
