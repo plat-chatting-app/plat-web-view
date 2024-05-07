@@ -27,10 +27,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body
-        className={clsx(notoSansKr.className, 'w-screen h-screen bg-orange-50')}
+        className={clsx(notoSansKr.className, 'w-screen h-screen bg-gray-200')}
         suppressHydrationWarning={true}
       >
-        <main className="pt-1.5 w-full xl:max-w-screen-md mx-auto h-full bg-gray-50">
+        <main className="pt-1.5 w-full md:max-w-screen-md mx-auto h-full bg-gray-50">
           {children}
         </main>
       </body>
