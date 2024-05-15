@@ -30,7 +30,7 @@ export default function RootLayout({
         className={clsx(notoSansKr.className, 'w-screen h-screen bg-gray-200')}
         suppressHydrationWarning={true}
       >
-        <main className="pt-1.5 w-full md:max-w-screen-md mx-auto h-full bg-gray-50">
+        <main className="w-full h-full md:max-w-screen-md mx-auto bg-gray-50">
           {children}
         </main>
       </body>

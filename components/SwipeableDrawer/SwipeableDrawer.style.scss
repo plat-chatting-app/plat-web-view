@@ -1,0 +1,9 @@
+.drawer-mask {
+  @apply absolute inset-0 z-40 pointer-events-none w-screen h-screen bg-transparent overflow-hidden;
+  perspective: 0;
+}
+
+.drawer-container {
+  @apply transition-all duration-300;
+  @apply absolute bg-white pointer-events-auto;
+}

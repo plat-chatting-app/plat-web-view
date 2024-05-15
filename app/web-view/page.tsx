@@ -1,6 +1,7 @@
 import type { UserAgent } from '@plat/server'
 import { MapService } from '@plat/map'
 import { checkIsWebView } from '@plat/utils/webview'
+import SwipeableDrawer from '@plat-ui/SwipeableDrawer'
 
 const Page = ({
   searchParams,
@@ -12,9 +13,17 @@ const Page = ({
   const userAgent: UserAgent = JSON.parse(searchParams.userAgent)
 
   return (
-    <MapService
-      isWebView={checkIsWebView(userAgent.os.name, userAgent.browser.name)}
-    />
+    <div className="w-full h-full">
+      <MapService
+        isWebView={checkIsWebView(userAgent.os.name, userAgent.browser.name)}
+      />
+      <SwipeableDrawer
+        className="md:max-w-screen-md mx-auto h-full"
+        startPoint={150}
+      >
+        <div className="w-full h-full"></div>
+      </SwipeableDrawer>
+    </div>
   )
 }
 
