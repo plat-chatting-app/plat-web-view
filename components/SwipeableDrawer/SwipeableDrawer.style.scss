@@ -1,5 +1,5 @@
 .drawer-mask {
-  @apply absolute inset-0 z-40 pointer-events-none w-screen h-screen bg-transparent overflow-hidden;
+  @apply absolute inset-0 z-40 pointer-events-none touch-none w-screen h-screen bg-transparent overflow-hidden;
   perspective: 0;
 }
 

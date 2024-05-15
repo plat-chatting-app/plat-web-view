@@ -39,6 +39,8 @@ const Puller = ({
   }, [touchStart, touchEnd])
 
   const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = (ev) => {
+    ev.stopPropagation()
+
     setTouchEnd(null)
     setTouchStart(
       Boolean(direction[0])
@@ -49,6 +51,8 @@ const Puller = ({
   }
 
   const handleMove: React.TouchEventHandler<HTMLDivElement> = (ev) => {
+    ev.stopPropagation()
+
     setTouchEnd(
       Boolean(direction[0])
         ? ev.targetTouches[0].clientX
@@ -57,6 +61,8 @@ const Puller = ({
   }
 
   const handleTouchEnd: React.TouchEventHandler<HTMLDivElement> = (ev) => {
+    ev.stopPropagation()
+
     setTouchStart(null)
     setTouchEnd(null)
     onSwipeEnd?.()
