@@ -20,6 +20,7 @@ const Page = ({
       <SwipeableDrawer
         className="md:max-w-screen-md mx-auto h-full"
         startPoint={150}
+        controlledByClick
       >
         <div className="w-full h-full"></div>
       </SwipeableDrawer>

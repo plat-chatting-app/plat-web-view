@@ -21,12 +21,14 @@ export interface SwipeableDrawerProps
   anchor?: Anchor
   startPoint?: number
   onFull?: () => void
+  controlledByClick?: boolean
   pullerProps?: PullerProps
 }
 
 const SwipeableDrawer = ({
   anchor = 'bottom',
   startPoint = 0,
+  controlledByClick = false,
   onFull,
   children,
   className,
@@ -74,6 +76,11 @@ const SwipeableDrawer = ({
     return setIsSwiping(false)
   }
 
+  const handleClick = (e?: React.MouseEvent) => {
+    e?.preventDefault()
+    tipLength === 0 ? setTipLength(availableSize) : setTipLength(0)
+  }
+
   return (
     <div className="drawer-mask">
       <div
@@ -97,6 +104,10 @@ const SwipeableDrawer = ({
         }}
       >
         <Puller
+          onClick={(e) => {
+            controlledByClick && handleClick(e)
+            pullerProps?.onClick?.()
+          }}
           onSwipeStart={handleSwipeStart}
           onSwipeEnd={handleSwipeEnd}
           onSwipe={handleSwipe}

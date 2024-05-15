@@ -11,6 +11,7 @@ export interface PullerProps
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  onClick?: (e?: React.MouseEvent) => void
   onSwipeStart?: () => void
   onSwipe: (value: number) => void
   onSwipeEnd?: () => void
@@ -21,6 +22,7 @@ export interface PullerProps
 }
 
 const Puller = ({
+  onClick,
   onSwipeStart,
   onSwipe,
   onSwipeEnd,
@@ -71,6 +73,7 @@ const Puller = ({
 
   return (
     <div
+      onClick={onClick}
       onTouchStart={handleTouchStart}
       onTouchMove={handleMove}
       onTouchEnd={handleTouchEnd}

@@ -15,8 +15,8 @@ export const getScreenSizeByDirection = (
   }
 
   if (!!direction[0]) {
-    return window.screen.width
+    return document.body.clientWidth
   }
 
-  return window.screen.height
+  return document.body.clientHeight
 }
