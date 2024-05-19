@@ -991,7 +991,7 @@
 	"editor.tabFocusMode": false,
 
 	// The number of spaces a tab is equal to. This setting is overridden based on the file contents when `editor.detectIndentation` is on.
-	"editor.tabSize": 4,
+	"editor.tabSize": 2,
 
 	// Overrides editor syntax colors and font style from the currently selected color theme.
 	"editor.tokenColorCustomizations": {},
@@ -1250,7 +1250,7 @@
 	//  - side: Show the Activity Bar to the side of the Primary Side Bar.
 	//  - top: Show the Activity Bar on top of the Primary Side Bar.
 	//  - hidden: Hide the Activity Bar.
-	"workbench.activityBar.location": "side",
+	"workbench.activityBar.location": "default",
 
 	// Controls whether to automatically resume available working changes stored in the cloud for the current workspace.
 	//  - onReload: Automatically resume available working changes from the cloud on window reload.
@@ -6599,5 +6599,9 @@
 
 	// This extension will process files in `node_modules`.
 	"prettier.withNodeModules": false,
+	"accessibility.signals.progress": {
+		"announcement": "auto",
+		"sound": "auto"
+	},
 
 }

@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { Map as MapApi, Marker } from '@plat/Map/kakao-map-api'
-import MapSetting from '@plat/Map/kakao/MapSetting'
-import MarkerSetting from '@plat/Map/kakao/MarkerSetting'
-import IdleEvent from '@plat/Map/kakao/IdleEvent'
+import { Map as MapApi, Marker } from '@modules/kakao-map/api'
+import MapSetting from '@modules/kakao-map/MapSetting'
+import MarkerSetting from '@modules/kakao-map/MarkerSetting'
+import IdleEvent from '@modules/kakao-map/IdleEvent'
 
 interface Props
   extends React.DetailedHTMLProps<

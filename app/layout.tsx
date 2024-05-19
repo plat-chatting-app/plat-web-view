@@ -1,14 +1,13 @@
 import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
-import clsx from 'clsx'
-import Environment from '@usecase/server/Environment'
 import './globals.scss'
+import clsx from 'clsx'
 
 const notoSansKr = Noto_Sans_KR({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Plat web app',
-  description: 'Plat 웹뷰',
+  title: '플랫',
+  description: '지도 안에서 만나는 이야기',
   icons: {
     icon: [
       {
@@ -27,18 +26,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <Environment>
-        <body
-          className={clsx(
-            notoSansKr.className,
-            'w-screen h-screen bg-orange-50',
-          )}
-        >
-          <main className="pt-1.5 max-w-screen-sm mx-auto h-full bg-gray-50">
-            {children}
-          </main>
-        </body>
-      </Environment>
+      <body
+        className={clsx(notoSansKr.className, 'w-screen h-screen bg-gray-200')}
+        suppressHydrationWarning={true}
+      >
+        <main className="w-full h-full md:max-w-screen-md mx-auto bg-gray-50">
+          {children}
+        </main>
+      </body>
     </html>
   )
 }

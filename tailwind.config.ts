@@ -28,14 +28,19 @@ export const colors = {
   'primary-700': '#7649D3',
 }
 
-const screens = Object.fromEntries(
-  Object.entries(breakpoints).map(([key, value]) => [key, `${value}px`]),
+const screens = Object.entries(breakpoints).reduce(
+  (prev, curr) => ({
+    ...prev,
+    [curr[0]]: `${curr[1]}px`,
+  }),
+  {},
 )
 
 const config: Config = {
   content: [
     './usecase/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './modules/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {

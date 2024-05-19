@@ -1,5 +1,5 @@
-import type { GeolocationOptions } from '@plat/utils/geolocation'
-import { getProcessEnv } from '@usecase/server/Environment'
+import type { GeolocationOptions } from '@modules/geolocation'
+import { getProcessEnv } from '@plat/server/Environment'
 
 const geolocation: GeolocationOptions = {
   enableHighAccuracy: true,
@@ -17,7 +17,9 @@ const kakao = {
   zoom: 3,
 } as const
 
-export const options = {
+const options = {
   geolocation,
   kakao,
 }
+
+export default options

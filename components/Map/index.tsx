@@ -1,5 +1,5 @@
 'use client'
-import KakaoMap from '@plat/Map/kakao'
+import KakaoMap from '@modules/kakao-map'
 
 export type MapProps = React.DetailedHTMLProps<
   React.HTMLAttributes<HTMLDivElement>,
@@ -11,6 +11,7 @@ export type MapProps = React.DetailedHTMLProps<
   apiKey: string
   isLoading?: boolean
   fallback?: React.ReactNode
+  error?: Error
 }
 
 const Map = ({
@@ -20,8 +21,11 @@ const Map = ({
   zoom,
   isLoading,
   fallback,
+  error,
   ...divProps
 }: MapProps) => {
+  if (error) throw error
+
   if (isLoading) return fallback ?? null
   if (!location) return fallback ?? null
 
@@ -30,7 +34,8 @@ const Map = ({
       <KakaoMap apiKey={apiKey} location={location} zoom={zoom} {...divProps} />
     )
   }
-  return null
+
+  throw new Error('맵 타입을 찾을 수 없습니다')
 }
 
 export default Map

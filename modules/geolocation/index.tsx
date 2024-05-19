@@ -1,47 +1,32 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import {
+  GeolocationOptions,
+  GeolocationPosition,
+  GeolocationPositionError,
+  GeolocationCoordinates,
+  ErrorCode,
+} from '@modules/geolocation/api'
 
-export type GeolocationOptions = {
-  enableHighAccuracy?: boolean
-  maximumAge?: number
-  timeout?: number
+export type {
+  GeolocationOptions,
+  GeolocationCoordinates,
+  GeolocationPosition,
+  GeolocationPositionError,
 }
 
-export type GeolocationCoordinates = Readonly<{
-  latitude: number
-  longitude: number
-  altitude: number | null
-  accuracy: number
-  altitudeAccuracy: number | null
-  heading: number | null
-  speed: number | null
-}>
+export { ErrorCode }
 
-export type GeolocationPosition = Readonly<{
-  coords: GeolocationCoordinates
-  timestamp: number
-}>
-
-export enum ErrorCode {
-  API_NOT_SUPPORTED,
-  PERMISSION_DENIED,
-  POSITION_UNAVAILABLE,
-  TIMEOUT,
-}
-
-export type GeolocationPositionError = Readonly<{
-  code: ErrorCode
-  message: string
-}>
-
-export const useGeolocation = (
-  options?: GeolocationOptions,
-): {
+export type GeolocationState = {
   isLoading: boolean
   position?: GeolocationPosition
   error?: GeolocationPositionError
-} => {
+}
+
+export const useGeolocation = (
+  options?: GeolocationOptions,
+): GeolocationState => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<GeolocationPositionError | undefined>(
     undefined,
@@ -80,4 +65,14 @@ export const useGeolocation = (
     position,
     error,
   }
+}
+
+export type GeolocationProps = {
+  options: GeolocationOptions
+  children?: (context: GeolocationState) => React.ReactNode
+}
+
+export const Geolocation = ({ options, children }: GeolocationProps) => {
+  const state = useGeolocation(options)
+  return <>{children?.(state)}</>
 }

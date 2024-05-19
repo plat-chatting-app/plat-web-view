@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@plat/Button'
+import Button from '@plat-ui/Button'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -22,8 +22,8 @@ export default function Home() {
             Plat 플랫
           </div>
         </div>
-        <Button as={(props) => <Link href="/map" {...props} />}>
-          지도 서비스 이용하기
+        <Button as={(props) => <Link href="/web-view" {...props} />}>
+          플랫 바로가기
         </Button>
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import Spinner from '@plat/Spinner'
+import Spinner from '@plat-ui/Spinner'
 import Image from 'next/image'
 
 const Loading = () => {

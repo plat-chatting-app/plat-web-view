@@ -2,7 +2,13 @@
   @apply focus:outline-none;
 
   &.primary {
-    @apply text-white bg-primary hover:bg-primary-dark focus:ring-primary-100 dark:bg-primary-400 dark:hover:bg-primary dark:focus:bg-primary-dark;
+    &.contained {
+      @apply text-white bg-primary hover:bg-primary-dark focus:ring-primary-100 dark:bg-primary-400 dark:hover:bg-primary dark:focus:bg-primary-dark;
+    }
+
+    &.outlined {
+      @apply text-primary hover:text-white border border-primary hover:bg-primary-700 focus:outline-none focus:ring-primary-100 dark:border-primary-400 dark:text-primary-400 dark:hover:text-white dark:hover:bg-primary dark:focus:ring-primary-700;
+    }
   }
 
   &.sm {

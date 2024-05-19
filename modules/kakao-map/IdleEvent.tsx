@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from 'react'
-import { Map as MapApi } from '@plat/Map/kakao-map-api'
+import { Map as MapApi } from '@modules/kakao-map/api'
 
 interface Props {
   mapApi: MapApi
